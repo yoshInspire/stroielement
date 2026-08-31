@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>СТРОЙЭЛЕМЕНТ. Презентация</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   СТРОЙЭЛЕМЕНТ — презентация, 1440x810 (16:9)
+   Источник дизайна: лендинг. Печать: Chrome -> PDF, фон включён.
+   ============================================================ */
+
+:root{
+  --ink:#0A0B0E; --ink-2:#101218; --paper:#F2EFE9;
+  --txt:#EDEAE4; --dim:#90908B; --dim-2:#63625E;
+  --coral:#F0705F; --line:rgba(255,255,255,.11); --line-soft:rgba(255,255,255,.06);
+  --f:"Onest","Segoe UI",system-ui,sans-serif;
+}
+*,*::before,*::after{ box-sizing:border-box; }
+html,body{ margin:0; padding:0; background:#33343a; }
+body{ font-family:var(--f); font-variant-numeric:tabular-nums; -webkit-font-smoothing:antialiased; }
+img{ display:block; max-width:100%; }
+h1,h2,h3{ margin:0; font-weight:600; letter-spacing:-.03em; }
+p{ margin:0; }
+ul{ margin:0; padding:0; list-style:none; }
+
+.slide{
+  position:relative; width:1440px; height:810px; overflow:hidden;
+  background:var(--ink); color:var(--txt);
+  page-break-after:always; break-after:page;
+  margin:0 auto 24px;
+}
+.slide:last-child{ page-break-after:auto; break-after:auto; }
+
+/* ---------- фоновые слои, как на сайте ---------- */
+.bg{ position:absolute; inset:0; overflow:hidden; z-index:0; }
+.bg i{ position:absolute; display:block; }
+.bg .glow{
+  inset:-25%; opacity:.34;
+  background:
+    radial-gradient(36% 32% at 80% 8%,  rgba(240,112,95,.60), transparent 68%),
+    radial-gradient(42% 36% at 8% 66%,  rgba(43,71,200,.46),  transparent 70%),
+    radial-gradient(28% 26% at 58% 100%,rgba(240,112,95,.30), transparent 66%);
+}
+.bg .stone{
+  inset:0; opacity:.07; mix-blend-mode:soft-light;
+  background:url("assets/img/texture-onyx.jpg") center/cover no-repeat;
+}
+.bg .grid{ inset:0; display:grid; grid-template-columns:repeat(5,1fr); }
+.bg .grid b{ border-left:1px solid rgba(255,255,255,.045); }
+.bg .vig{
+  inset:0;
+  background:radial-gradient(125% 85% at 50% 38%, transparent 38%, rgba(5,6,8,.62) 100%);
+}
+
+.in{ position:relative; z-index:1; height:100%; padding:64px 76px; display:flex; flex-direction:column; }
+
+/* ---------- служебное ---------- */
+.tag{ font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--coral); }
+.accent{ color:var(--coral); }
+.h{ font-size:52px; line-height:1.06; }
+.h--sm{ font-size:40px; line-height:1.08; }
+.lead{ font-size:20px; line-height:1.55; color:var(--dim); }
+.num{ position:absolute; right:76px; bottom:42px; font-size:13px; color:var(--dim-2); z-index:2; }
+.mark{ position:absolute; left:76px; bottom:38px; z-index:2; display:flex; align-items:center; gap:14px; }
+.mark img{ height:22px; opacity:.75; }
+.mark span{ font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--dim-2); }
+
+/* ---------- 1. титул ---------- */
+.cover .in{ padding:0; }
+.cover__txt{
+  position:absolute; inset:0 46% 0 0; z-index:2;
+  padding:76px; display:flex; flex-direction:column; justify-content:space-between;
+}
+.cover__logo{ height:42px; width:auto; align-self:flex-start; flex:0 0 auto; }
+.cover h1{ font-size:76px; line-height:1; letter-spacing:-.042em; }
+.cover__sub{ font-size:19px; color:var(--dim); margin-top:22px; max-width:30ch; line-height:1.5; }
+.cover__shot{ position:absolute; inset:0 0 0 54%; z-index:1; }
+.cover__shot img{ width:100%; height:100%; object-fit:cover; }
+.cover__shot::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to right, var(--ink) 0%, rgba(10,11,14,.35) 26%, transparent 60%);
+}
+.cover__meta{ display:flex; gap:52px; }
+.cover__meta div{ display:flex; flex-direction:column; gap:3px; }
+.cover__meta b{ font-size:30px; font-weight:600; letter-spacing:-.04em; }
+.cover__meta span{ font-size:13px; color:var(--dim-2); }
+
+/* ---------- 2. о компании ---------- */
+.about__body{ display:grid; grid-template-columns:1fr .78fr; gap:56px; flex:1; align-items:center; }
+.about__body p + p{ margin-top:18px; }
+.mission{ margin-top:28px; padding-left:16px; border-left:2px solid var(--coral); max-width:46ch; }
+.mission span{ display:block; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--coral); margin-bottom:6px; }
+.mission p{ font-size:19px; line-height:1.5; color:var(--txt); }
+.about__pics{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.about__pics img{ width:100%; height:210px; object-fit:cover; border-radius:8px; }
+.about__pics img:first-child{ grid-column:span 2; height:250px; }
+
+/* ---------- 3. цифры ---------- */
+.figs{ display:grid; grid-template-columns:repeat(4,1fr); border-top:1px solid var(--line); flex:1; align-content:center; }
+.fig{ padding:44px 30px 44px 0; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.fig:last-child{ border-right:none; }
+.fig:nth-child(n+2){ padding-left:30px; }
+.fig b{ display:block; font-size:64px; font-weight:600; letter-spacing:-.05em; line-height:1; }
+.fig i{ display:block; font-style:normal; font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--coral); margin:14px 0 12px; }
+.fig span{ font-size:15px; color:var(--dim); line-height:1.45; }
+
+/* ---------- 4. заказчики ---------- */
+.clients{ display:grid; grid-template-columns:repeat(3,1fr); column-gap:44px; flex:1; align-content:center; }
+.clients li{ font-size:22px; font-weight:500; padding:20px 0; border-bottom:1px solid var(--line-soft); }
+
+/* ---------- 5. услуги ---------- */
+.srv{ display:grid; grid-template-columns:1fr 1fr; column-gap:56px; flex:1; align-content:center; }
+.srv li{ padding:19px 0; border-bottom:1px solid var(--line); }
+.srv h3{ font-size:23px; line-height:1.2; }
+.srv p{ font-size:14.5px; color:var(--dim); margin-top:5px; line-height:1.45; }
+
+/* ---------- 6-9. направления ---------- */
+.dir{ display:grid; grid-template-columns:.82fr 1.18fr; gap:56px; flex:1; align-items:center; }
+.dir h2{ font-size:40px; line-height:1.08; margin:14px 0 18px; }
+.dir p{ font-size:16.5px; line-height:1.6; color:var(--dim); }
+.dir__gal{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.dir__gal figure{ margin:0; overflow:hidden; border-radius:8px; }
+.dir__gal img{ width:100%; height:100%; object-fit:cover; }
+.dir__gal .a{ grid-row:span 2; }
+.dir__gal .a img{ height:492px; }
+.dir__gal .b img, .dir__gal .c img{ height:240px; }
+
+/* ---------- 10. жилые интерьеры (светлый) ---------- */
+.light{ background:var(--paper); color:#16181D; }
+.light .tag{ color:#B54A38; }
+.light .accent{ color:#B54A38; }
+.light .dir p{ color:#4A4C52; }
+.light .mark span{ color:#8A8B90; }
+.light .num{ color:#8A8B90; }
+
+/* ---------- 11-13. портфолио ---------- */
+.cards{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; flex:1; align-content:center; }
+.card{ background:var(--ink-2); border:1px solid var(--line-soft); border-radius:10px; overflow:hidden; }
+.card__img{ height:224px; }
+.card__img img{ width:100%; height:100%; object-fit:cover; }
+.card__b{ padding:22px 22px 24px; }
+.card__place{ font-size:13px; color:var(--coral); font-weight:500; margin-bottom:8px; }
+.card h3{ font-size:22px; line-height:1.16; min-height:52px; }
+.card dl{ display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft); }
+.card dt{ font-size:12.5px; color:var(--dim-2); }
+.card dd{ font-size:13.5px; color:var(--dim); margin:0; line-height:1.4; }
+
+/* ---------- 14. контакты ---------- */
+.cta{ font-size:50px; line-height:1.08; }
+.cnt{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); margin-top:56px; }
+.cnt > div{ padding:34px 30px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+.cnt > div:last-child{ border-right:none; }
+.cnt__k{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--dim-2); }
+.cnt__v{ display:block; font-size:29px; font-weight:600; letter-spacing:-.03em; margin-top:12px; }
+
+/* ---------- печать ---------- */
+@page{ size:1440px 810px; margin:0; }
+@media print{
+  html,body{ background:#fff; }
+  .slide{ margin:0; box-shadow:none; }
+}
+@media screen{
+  .slide{ box-shadow:0 10px 40px rgba(0,0,0,.45); }
+  body{ padding:24px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════ 1. ТИТУЛ ═══════════ -->
+<section class="slide cover">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="vig"></i></div>
+  <div class="cover__shot"><img src="assets/img/hero-opus.jpg" alt=""></div>
+  <div class="cover__txt">
+    <img class="cover__logo" src="assets/img/logo.png" alt="СТРОЙЭЛЕМЕНТ">
+    <div>
+      <p class="tag">Строим с 2010 года в России и ОАЭ</p>
+      <h1 style="margin-top:20px">Строительство<br>и <span class="accent">управление</span><br>проектами</h1>
+      <p class="cover__sub">Полный цикл строительных работ зданий и помещений коммерческой недвижимости под ключ.</p>
+    </div>
+    <div class="cover__meta">
+      <div><b>15</b><span>лет на рынке</span></div>
+      <div><b>1 000 000+</b><span>кв. м построено</span></div>
+      <div><b>500+</b><span>проектов</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ 2. О КОМПАНИИ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">О компании</p>
+    <h2 class="h" style="margin-top:16px">Строим и ремонтируем коммерческую<br>и <span class="accent">жилую недвижимость</span></h2>
+    <div class="about__body">
+      <div>
+        <p class="lead" style="color:var(--txt)">Компания основана в 2010 году. Основные заказчики это коммерческие структуры: банки и банковская сфера, здания, ритейл, офисы.</p>
+        <p class="lead">В 2023 году мы завершили офис в знаменитом The Opus Tower by Omniyat, спроектированном Захой Хадид. Компания расширила свою деятельность, теперь мы занимаемся строительством и ремонтом как коммерческой, так и жилой недвижимости в России и Дубае.</p>
+        <div class="mission">
+          <span>Наша миссия</span>
+          <p>Создавать эстетичные, функциональные и комфортные пространства, идеально адаптированные под задачи бизнеса и потребности жизни.</p>
+        </div>
+      </div>
+      <div class="about__pics">
+        <img src="assets/img/dubai-onyx.jpg" alt="">
+        <img src="assets/img/opus-tower.jpg" alt="">
+        <img src="assets/img/moscow-corridor.jpg" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">02</div>
+</section>
+
+<!-- ═══════════ 3. ЦИФРЫ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">Факты в цифрах</p>
+    <div class="figs">
+      <div class="fig"><b>15</b><i>лет</i><span>опыт работы по всей России, включая Крым и новые регионы</span></div>
+      <div class="fig"><b>1 000 000+</b><i>кв. м</i><span>построено и введено в эксплуатацию</span></div>
+      <div class="fig"><b>500+</b><i>проектов</i><span>реализовано с 2010 года</span></div>
+      <div class="fig"><b>200+</b><i>клиентов</i><span>благодарных заказчиков</span></div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">03</div>
+</section>
+
+<!-- ═══════════ 4. ЗАКАЗЧИКИ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">Среди наших заказчиков</p>
+    <h2 class="h--sm" style="margin-top:16px">Банки, ритейл, офисы<br>и <span class="accent">государственные учреждения</span></h2>
+    <ul class="clients">
+      <li>Сбербанк</li><li>Банк ВТБ</li><li>МТС Банк</li>
+      <li>Абсолют Банк</li><li>Город Столиц</li><li>ФКР Москвы</li>
+      <li>Аэропорт Внуково</li><li>ВкусВилл</li><li>Минюст РФ</li>
+    </ul>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">04</div>
+</section>
+
+<!-- ═══════════ 5. УСЛУГИ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">Что мы делаем</p>
+    <h2 class="h--sm" style="margin-top:16px">Полный цикл строительных работ зданий и помещений<br>коммерческой недвижимости <span class="accent">под ключ</span></h2>
+    <ul class="srv">
+      <li><h3>Проектирование</h3><p>Обмеры, концепция, рабочая документация и согласования.</p></li>
+      <li><h3>Отделочные работы</h3><p>Черновая и чистовая отделка помещений любой сложности.</p></li>
+      <li><h3>Генеральный подряд</h3><p>Полная ответственность за объект и сроки по одному договору.</p></li>
+      <li><h3>Инженерные системы</h3><p>Внутренние и наружные сети, вентиляция, электрика, климат.</p></li>
+      <li><h3>Бронированные конструкции</h3><p>Изготовление, монтаж и сертификация. Шлюзовые кабины и защищённые зоны.</p></li>
+      <li><h3>Комплектация</h3><p>Мебель, элементы декора и предметы интерьера, включая индивидуальный заказ.</p></li>
+      <li><h3>Слаботочные системы</h3><p>Видеонаблюдение, охранные системы, контроль доступа, пожарная безопасность.</p></li>
+      <li><h3>Управление проектами</h3><p>Бюджет, график, подрядчики и приёмка работ.</p></li>
+    </ul>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">05</div>
+</section>
+
+<!-- ═══════════ 6. ДУБАЙ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <div class="dir">
+      <div>
+        <p class="tag">Дубай</p>
+        <h2>Офис в Дубае:<br>стиль и <span class="accent">технологии</span></h2>
+        <p>Современный дизайн, премиальные материалы, инновационные инженерные решения. Комфорт, статус и технологии для эффективной работы.</p>
+      </div>
+      <div class="dir__gal">
+        <figure class="a"><img src="assets/img/dubai-lobby.jpg" alt=""></figure>
+        <figure class="b"><img src="assets/img/dubai-reception.jpg" alt=""></figure>
+        <figure class="c"><img src="assets/img/dubai-lounge.jpg" alt=""></figure>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">06</div>
+</section>
+
+<!-- ═══════════ 7. КОСТРОМА ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <div class="dir">
+      <div>
+        <p class="tag">Кострома</p>
+        <h2>Управление Минюста РФ<br>по <span class="accent">Костромской области</span></h2>
+        <p>Здесь мы воплотили комплексный подход от внутренних работ до благоустройства территории. Элегантные интерьеры, качественные отделочные материалы и современные инженерные системы подчёркивают статус учреждения. Продуманный ландшафтный дизайн гармонично дополняет архитектуру.</p>
+      </div>
+      <div class="dir__gal">
+        <figure class="a"><img src="assets/img/kostroma-lobby.jpg" alt=""></figure>
+        <figure class="b"><img src="assets/img/kostroma-hall.jpg" alt=""></figure>
+        <figure class="c"><img src="assets/img/kostroma-cafe.jpg" alt=""></figure>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">07</div>
+</section>
+
+<!-- ═══════════ 8. МОСКВА ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <div class="dir">
+      <div>
+        <p class="tag">Москва</p>
+        <h2>Офис в Москве:<br>статус и <span class="accent">комфорт</span></h2>
+        <p>Продуманное пространство, сочетание благородных материалов и функциональных решений. Классика и современность объединены в элегантном интерьере, создавая рабочую атмосферу высокого уровня.</p>
+      </div>
+      <div class="dir__gal">
+        <figure class="a"><img src="assets/img/moscow-cabinet.jpg" alt=""></figure>
+        <figure class="b"><img src="assets/img/moscow-classic.jpg" alt=""></figure>
+        <figure class="c"><img src="assets/img/moscow-white.jpg" alt=""></figure>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">08</div>
+</section>
+
+<!-- ═══════════ 9. VIP-ОТДЕЛЕНИЯ БАНКОВ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <div class="dir">
+      <div>
+        <p class="tag">Банки</p>
+        <h2>VIP-отделения<br><span class="accent">банков</span></h2>
+        <p>Создаём интерьеры, которые подчёркивают статус и престиж, сочетая элегантный дизайн с комфортом для клиентов. Участвуем в разработке VIP-зон Сбербанка и ВТБ, где продуманы все детали, от эксклюзивного текстиля до мебели, созданной на заказ.</p>
+      </div>
+      <div class="dir__gal">
+        <figure class="a"><img src="assets/img/bank-sber-desk.jpg" alt=""></figure>
+        <figure class="b"><img src="assets/img/bank-sber-sign.jpg" alt=""></figure>
+        <figure class="c"><img src="assets/img/bank-absolut2.jpg" alt=""></figure>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">09</div>
+</section>
+
+<!-- ═══════════ 10. ЖИЛЫЕ ИНТЕРЬЕРЫ ═══════════ -->
+<section class="slide light">
+  <div class="in">
+    <div class="dir">
+      <div>
+        <p class="tag">Новое направление</p>
+        <h2>Интерьеры жилых<br><span class="accent">помещений</span></h2>
+        <p>Мы также занимаемся жилыми интерьерами. От ремонта до оформления всех деталей поможем создать пространство, которое будет не только красивым, но и удобным.</p>
+        <p style="margin-top:16px">Подберём идеальные шторы, сделаем индивидуальный заказ мебели и учтём каждую деталь, чтобы интерьер отражал вашу личность и стиль жизни.</p>
+      </div>
+      <div class="dir__gal">
+        <figure class="a"><img src="assets/img/home-living.jpg" alt=""></figure>
+        <figure class="b"><img src="assets/img/home-bedroom.jpg" alt=""></figure>
+        <figure class="c"><img src="assets/img/home-tv.jpg" alt=""></figure>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">10</div>
+</section>
+
+<!-- ═══════════ 11. ПОРТФОЛИО 1 ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">Портфолио</p>
+    <h2 class="h--sm" style="margin-top:16px">Избранные <span class="accent">объекты</span></h2>
+    <div class="cards">
+      <article class="card">
+        <div class="card__img"><img src="assets/img/dubai-atrium.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Дубай, ОАЭ</p>
+          <h3>The Opus Tower<br>by Omniyat</h3>
+          <dl><dt>Работы</dt><dd>Офис коммерческой компании</dd><dt>Период</dt><dd>с апреля по декабрь 2023</dd><dt>Площадь</dt><dd>330 м²</dd></dl>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/img/kostroma-yard.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Кострома, ул. Лесная, 11</p>
+          <h3>Управление Минюста<br>по Костромской области</h3>
+          <dl><dt>Работы</dt><dd>Ремонт и реставрация, инженерные сети, благоустройство</dd><dt>Период</dt><dd>с апреля по сентябрь 2024</dd><dt>Площадь</dt><dd>4 500 м²</dd></dl>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/img/moscow-corridor.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Москва, ул. Садовническая, 12</p>
+          <h3>Офисное<br>здание</h3>
+          <dl><dt>Работы</dt><dd>Ремонтные работы здания</dd><dt>Период</dt><dd>с октября 2021 по июнь 2022</dd><dt>Площадь</dt><dd>1 700 м²</dd></dl>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">11</div>
+</section>
+
+<!-- ═══════════ 12. ПОРТФОЛИО 2 ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">Портфолио</p>
+    <h2 class="h--sm" style="margin-top:16px">Избранные <span class="accent">объекты</span></h2>
+    <div class="cards">
+      <article class="card">
+        <div class="card__img"><img src="assets/img/college-class.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Москва</p>
+          <h3>Московский колледж<br>бизнес-технологий</h3>
+          <dl><dt>Работы</dt><dd>Ремонтные работы в помещениях</dd><dt>Период</dt><dd>с мая по август 2025</dd><dt>Площадь</dt><dd>4 000 м²</dd></dl>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/img/bank-makeevka.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">ДНР, Макеевка</p>
+          <h3>Отделение<br>Сбербизнес</h3>
+          <dl><dt>Работы</dt><dd>Переформатирование отделения</dd><dt>Период</dt><dd>с декабря 2024 по январь 2025</dd><dt>Адрес</dt><dd>ул. 250-летия Донбасса, 5Г</dd></dl>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/img/admin-office.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Россия</p>
+          <h3>Административное<br>здание</h3>
+          <dl><dt>Работы</dt><dd>Ремонтные работы в помещениях</dd><dt>Период</dt><dd>май 2025</dd><dt>Площадь</dt><dd>350 м²</dd></dl>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">12</div>
+</section>
+
+<!-- ═══════════ 13. ПОРТФОЛИО 3 ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">Портфолио</p>
+    <h2 class="h--sm" style="margin-top:16px">Избранные <span class="accent">объекты</span></h2>
+    <div class="cards">
+      <article class="card">
+        <div class="card__img"><img src="assets/img/bank-sochi.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Сочи</p>
+          <h3>Сбербанк,<br>вип-отделение</h3>
+          <dl><dt>Работы</dt><dd>Реконструкция здания под размещение вип-отделения</dd><dt>Период</dt><dd>2012 год</dd></dl>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/img/gates.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Россия</p>
+          <h3>Шлюзовые<br>кабины</h3>
+          <dl><dt>Работы</dt><dd>Поставка и установка</dd><dt>Период</dt><dd>2017 год</dd></dl>
+        </div>
+      </article>
+      <article class="card">
+        <div class="card__img"><img src="assets/img/bank-absolut.jpg" alt=""></div>
+        <div class="card__b">
+          <p class="card__place">Россия</p>
+          <h3>Абсолют<br>Банк</h3>
+          <dl><dt>Работы</dt><dd>Ремонтные работы в отделении</dd><dt>Период</dt><dd>2008 год</dd></dl>
+        </div>
+      </article>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">13</div>
+</section>
+
+<!-- ═══════════ 14. КОНТАКТЫ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in" style="justify-content:center">
+    <p class="tag">Контакты</p>
+    <h2 class="cta" style="margin-top:20px">Команда специалистов «Строй Элемент»<br>готова воплотить в жизнь<br><span class="accent">все ваши самые смелые идеи</span></h2>
+    <div class="cnt">
+      <div><span class="cnt__k">Телефон</span><span class="cnt__v">+7 910 423 82 55</span></div>
+      <div><span class="cnt__k">Почта</span><span class="cnt__v">stroy.element77@gmail.com</span></div>
+      <div><span class="cnt__k">География</span><span class="cnt__v">Россия и ОАЭ</span></div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="num">14</div>
+</section>
+
+</body>
+</html>
