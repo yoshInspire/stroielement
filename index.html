@@ -14,7 +14,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
+<!-- ?v= в конце пути сбрасывает кэш браузера: после правки css или js увеличить номер -->
+<link rel="stylesheet" href="assets/css/style.css?v=2">
 </head>
 <body>
 
@@ -51,29 +52,73 @@
 
 <main id="top">
 
-<!-- ========== ПЕРВЫЙ ЭКРАН ========== -->
+<!-- ========== ПЕРВЫЙ ЭКРАН ==========
+     Кадр во весь экран: объекты сменяют друг друга сами,
+     текст лежит поверх фотографии. Разметка слайдов ниже,
+     логика в assets/js/main.js, стили в блоке «ПЕРВЫЙ ЭКРАН» -->
 <section class="hero" id="hero">
-  <div class="hero__grid">
-    <div class="hero__text">
-      <p class="tag reveal">Возводим вечность</p>
-      <h1 class="reveal">Строительство<br>и <span class="accent">управление</span><br>проектами</h1>
-      <p class="hero__lead reveal">Полный цикл строительных работ зданий и помещений коммерческой недвижимости под ключ. Работаем в России и ОАЭ с 2010 года.</p>
-      <div class="hero__act reveal">
-        <a class="btn btn--solid" href="#projects">Смотреть проекты</a>
-        <a class="btn" href="tel:+79104238255">+7 910 423 82 55</a>
+
+  <div class="hero__stage">
+    <div class="hero__slide is-on" style="--pos:38%" data-title="The Opus Tower by Omniyat" data-place="Дубай, ОАЭ. Архитектура Захи Хадид">
+      <img src="assets/img/hero-opus.jpg" alt="Атриум The Opus Tower by Omniyat, Дубай" fetchpriority="high">
+    </div>
+    <div class="hero__slide" data-title="Офис в Дубае" data-place="Ресепшн из подсвеченного оникса">
+      <img src="assets/img/dubai-onyx.jpg" alt="Ресепшн из оникса, офис в Дубае" fetchpriority="low" decoding="async">
+    </div>
+    <div class="hero__slide" style="--pos:62%" data-title="Офис в Москве" data-place="Статус и комфорт">
+      <img src="assets/img/moscow-lounge.jpg" alt="Зона отдыха офиса в Москве" fetchpriority="low" decoding="async">
+    </div>
+    <div class="hero__slide" style="--pos:40%" data-title="Управление Минюста" data-place="Кострома. Холл административного здания">
+      <img src="assets/img/kostroma-lobby.jpg" alt="Холл административного здания в Костроме" fetchpriority="low" decoding="async">
+    </div>
+  </div>
+  <span class="hero__scrim" aria-hidden="true"></span>
+
+  <div class="hero__body">
+    <div class="hero__in">
+      <div class="hero__text">
+        <p class="tag hero__up">Возводим вечность</p>
+        <h1>
+          <span class="l" style="--i:0"><b>Строительство</b></span>
+          <span class="l" style="--i:1"><b>и <em class="accent">управление</em></b></span>
+          <span class="l" style="--i:2"><b>проектами</b></span>
+        </h1>
+        <p class="hero__lead hero__up">Полный цикл строительных работ зданий и помещений коммерческой недвижимости под ключ. Работаем в России и ОАЭ с 2010 года.</p>
+        <div class="hero__act hero__up">
+          <a class="btn btn--solid" href="#projects">Смотреть проекты</a>
+          <a class="btn btn--ghost" href="tel:+79104238255">+7 910 423 82 55</a>
+        </div>
+      </div>
+
+      <div class="hero__ctrl hero__up">
+        <div class="hero__cap is-in">
+          <b>The Opus Tower by Omniyat</b>
+          <i>Дубай, ОАЭ. Архитектура Захи Хадид</i>
+        </div>
+        <div class="hero__nav">
+          <div class="hero__bars">
+            <button class="hero__bar is-on" type="button" aria-label="Объект 1"><i></i></button>
+            <button class="hero__bar" type="button" aria-label="Объект 2"><i></i></button>
+            <button class="hero__bar" type="button" aria-label="Объект 3"><i></i></button>
+            <button class="hero__bar" type="button" aria-label="Объект 4"><i></i></button>
+          </div>
+          <p class="hero__num"><b>01</b> / 04</p>
+          <button class="hero__arw" type="button" data-dir="-1" aria-label="Предыдущий объект">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          </button>
+          <button class="hero__arw" type="button" data-dir="1" aria-label="Следующий объект">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
-    <figure class="hero__shot reveal">
-      <img src="assets/img/hero-opus.jpg" alt="Атриум The Opus Tower by Omniyat, Дубай" fetchpriority="high">
-      <figcaption><b>The Opus Tower by Omniyat</b><i>Дубай, ОАЭ. Архитектура Захи Хадид</i></figcaption>
-    </figure>
-  </div>
-
-  <div class="hero__meta">
-    <div><b>15</b><span>лет на рынке</span></div>
-    <div><b>1 000 000+</b><span>квадратных метров построено</span></div>
-    <div><b>500+</b><span>проектов реализовано</span></div>
+    <div class="hero__meta hero__up">
+      <div><b>15</b><span>лет на рынке</span></div>
+      <div><b>1 000 000+</b><span>квадратных метров построено</span></div>
+      <div><b>500+</b><span>проектов реализовано</span></div>
+      <a class="hero__scroll" href="#about"><span>Листайте</span><i></i></a>
+    </div>
   </div>
 </section>
 
@@ -409,6 +454,6 @@
   <a href="#top">Наверх ↑</a>
 </footer>
 
-<script src="assets/js/main.js"></script>
+<script src="assets/js/main.js?v=2"></script>
 </body>
 </html>

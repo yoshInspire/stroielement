@@ -234,63 +234,194 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 
 /* ============================================================
    ПЕРВЫЙ ЭКРАН
+   Фотография объекта во весь экран, кадры сменяют друг друга.
+   Текст лежит поверх, читаемость держит .hero__scrim.
+   Длительность показа кадра задана дважды: в @keyframes heroBar
+   и в переменной HOLD в main.js — менять надо оба места.
    ============================================================ */
 
 .hero{
   position:relative; z-index:1;
-  padding:clamp(80px,9.5vh,106px) var(--pad) clamp(20px,2.4vw,30px);
-  max-width:1520px; margin:0 auto;
   min-height:100svh;
-  display:flex; flex-direction:column; justify-content:space-between;
+  display:flex; flex-direction:column; justify-content:flex-end;
+  padding:clamp(92px,12vh,150px) 0 clamp(18px,2.2vw,30px);
+  overflow:hidden;
+  isolation:isolate;
 }
-.hero__grid{
-  display:grid;
-  grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);
-  gap:clamp(26px,3.4vw,60px);
-  align-items:end;
+
+/* ---------- Сцена ---------- */
+
+.hero__stage{ position:absolute; inset:0; z-index:0; background:#07080B; }
+.hero__slide{
+  position:absolute; inset:0;
+  opacity:0; transition:opacity 1.5s var(--ease);
+}
+.hero__slide.is-on{ opacity:1; }
+.hero__slide img{
+  width:100%; height:100%; object-fit:cover;
+  object-position:center var(--pos,50%);   /* --pos у слайда двигает кадр по вертикали */
+  transform:scale(1.07);
+  filter:contrast(1.05) saturate(.94);
+}
+/* медленный наезд, пока кадр на экране */
+.hero__slide.is-on img{ animation:heroZoom 16s var(--ease) forwards; }
+@keyframes heroZoom{ to{ transform:scale(1.17); } }
+
+/* Затемнение: слева под текст, снизу под цифры, сверху под шапку */
+.hero__scrim{
+  position:absolute; inset:0; z-index:1; pointer-events:none;
+  background:
+    linear-gradient(100deg, rgba(6,7,10,.95) 0%, rgba(6,7,10,.78) 30%, rgba(6,7,10,.26) 58%, rgba(6,7,10,.5) 100%),
+    linear-gradient(to top, rgba(6,7,10,.94) 0%, rgba(6,7,10,.34) 30%, transparent 56%),
+    linear-gradient(to bottom, rgba(6,7,10,.72) 0%, transparent 22%);
+}
+
+/* ---------- Содержимое ---------- */
+
+.hero__body{
+  position:relative; z-index:2;
   flex:1;
+  width:100%; max-width:1520px; margin:0 auto;
+  padding:0 var(--pad);
+  display:flex; flex-direction:column; justify-content:flex-end;
+  gap:clamp(24px,3.2vw,44px);
 }
+.hero__in{
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  align-items:end;
+  gap:clamp(20px,3vw,56px);
+}
+
 .hero h1{
-  font-size:clamp(40px,6.1vw,94px);
-  line-height:.99;
-  letter-spacing:-.042em;
-  margin:0 0 .5em;
+  font-size:clamp(41px,6.7vw,104px);
+  line-height:.96;
+  letter-spacing:-.045em;
+  margin:0 0 .44em;
+  text-shadow:0 2px 40px rgba(0,0,0,.45);
 }
+/* строки выезжают из-под маски */
+.hero h1 .l{
+  display:block; overflow:hidden;
+  padding-bottom:.08em; margin-bottom:-.08em;
+}
+.hero h1 .l > b{
+  display:block; font-weight:inherit;
+  transform:translateY(112%);
+  animation:heroLine 1.05s var(--ease) forwards;
+  animation-delay:calc(.18s + var(--i) * .11s);
+}
+.hero h1 em{ font-style:normal; }
+@keyframes heroLine{ to{ transform:none; } }
+
 .hero__lead{
-  max-width:40ch; color:var(--txt-dim);
+  max-width:42ch; color:#C9C6BF;
   font-size:clamp(15px,1.1vw,18px);
+  text-shadow:0 1px 20px rgba(0,0,0,.5);
 }
 .hero__act{ display:flex; flex-wrap:wrap; gap:10px; margin-top:26px; }
+.btn--ghost{
+  background:rgba(10,11,14,.32);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+}
 
-.hero__shot{
-  margin:0; position:relative; align-self:stretch;
-  border-radius:8px; overflow:hidden;
-  min-height:min(52vh,540px);
+/* всё, кроме заголовка, всплывает снизу */
+.hero__up{
+  opacity:0; transform:translateY(18px);
+  animation:heroUp .9s var(--ease) forwards;
+  animation-delay:var(--d,0s);
 }
-.hero__shot img{
-  width:100%; height:100%; object-fit:cover;
-  filter:contrast(1.04);
+@keyframes heroUp{ to{ opacity:1; transform:none; } }
+.hero .tag{ --d:.06s; }
+.hero__lead{ --d:.66s; }
+.hero__act{ --d:.78s; }
+.hero__ctrl{ --d:.9s; }
+.hero__meta{ --d:1s; }
+
+/* ---------- Подпись кадра и управление ---------- */
+
+.hero__ctrl{
+  display:flex; flex-direction:column; align-items:flex-end; gap:16px;
+  text-align:right; padding-bottom:6px;
 }
-.hero__shot figcaption{
-  position:absolute; left:0; right:0; bottom:0;
-  padding:16px 18px;
-  background:linear-gradient(to top, rgba(10,11,14,.92), transparent);
-  display:flex; flex-direction:column; gap:2px;
+.hero__cap{
+  display:flex; flex-direction:column; gap:3px;
+  max-width:34ch;
+  opacity:0; transform:translateY(7px);
+  transition:opacity .45s var(--ease), transform .45s var(--ease);
 }
-.hero__shot figcaption b{ font-size:14.5px; font-weight:600; }
-.hero__shot figcaption i{ font-style:normal; font-size:13px; color:var(--txt-dim); }
+.hero__cap.is-in{ opacity:1; transform:none; }
+.hero__cap b{ font-size:15px; font-weight:600; }
+.hero__cap i{ font-style:normal; font-size:13px; color:var(--txt-dim); }
+
+.hero__nav{ display:flex; align-items:center; gap:12px; }
+
+.hero__bars{ display:flex; gap:6px; margin-right:4px; }
+.hero__bar{
+  position:relative; width:34px; height:2px; padding:0;
+  border:0; background:rgba(255,255,255,.24);
+  cursor:pointer; overflow:hidden;
+}
+.hero__bar::before{ content:""; position:absolute; inset:-14px -3px; }  /* область нажатия */
+.hero__bar i{ position:absolute; inset:0 auto 0 0; width:0; background:var(--gold); }
+.hero__bar.is-on i{ animation:heroBar 7s linear forwards; }
+@keyframes heroBar{ to{ width:100%; } }
+
+.hero__num{
+  margin:0; font-size:13px; color:var(--txt-dim-2);
+  letter-spacing:.06em;
+}
+.hero__num b{ color:var(--txt); font-weight:600; }
+
+.hero__arw{
+  width:42px; height:42px; padding:0;
+  display:grid; place-items:center;
+  border:1px solid var(--line); border-radius:50%;
+  background:rgba(10,11,14,.34); color:var(--txt);
+  backdrop-filter:blur(8px); -webkit-backdrop-filter:blur(8px);
+  cursor:pointer;
+  transition:border-color .25s var(--ease), color .25s var(--ease), background .25s var(--ease);
+}
+.hero__arw svg{ width:19px; height:19px; fill:none; stroke:currentColor; stroke-width:1.5; }
+.hero__arw:hover{ border-color:var(--gold); color:var(--gold); background:rgba(10,11,14,.6); }
+
+/* ---------- Цифры и подсказка о прокрутке ---------- */
 
 .hero__meta{
-  display:flex; flex-wrap:wrap; gap:clamp(24px,4vw,64px);
+  display:flex; flex-wrap:wrap; align-items:flex-end;
+  gap:clamp(22px,4vw,64px);
   border-top:1px solid var(--line);
-  padding-top:18px; margin-top:clamp(22px,2.6vw,34px);
+  padding-top:18px;
 }
 .hero__meta > div{ display:flex; flex-direction:column; gap:1px; }
 .hero__meta b{
   font-size:clamp(23px,2.2vw,32px); font-weight:600;
   letter-spacing:-.04em; line-height:1.1;
 }
-.hero__meta span{ font-size:13px; color:var(--txt-dim-2); }
+.hero__meta span{ font-size:13px; color:var(--txt-dim); }
+
+.hero__scroll{
+  margin-left:auto; display:flex; align-items:center; gap:12px;
+  font-size:11px; font-weight:600; letter-spacing:.15em; text-transform:uppercase;
+  color:var(--txt-dim-2);
+  transition:color .25s var(--ease);
+}
+.hero__scroll:hover{ color:var(--gold); }
+.hero__scroll i{
+  width:1px; height:34px; overflow:hidden;
+  background:rgba(255,255,255,.16);
+  position:relative;
+}
+.hero__scroll i::after{
+  content:""; position:absolute; left:0; top:0; width:1px; height:12px;
+  background:var(--gold);
+  animation:heroDrop 2.4s var(--ease) infinite;
+}
+@keyframes heroDrop{
+  0%   { transform:translateY(-14px); opacity:0; }
+  30%  { opacity:1; }
+  100% { transform:translateY(34px);  opacity:0; }
+}
 
 /* ============================================================
    О КОМПАНИИ
@@ -627,9 +758,12 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
    ============================================================ */
 
 @media (max-width:1080px){
-  .hero__grid{ grid-template-columns:1fr; align-items:start; }
-  .hero__shot{ display:none; }
-  .hero{ min-height:auto; padding-top:104px; padding-bottom:44px; }
+  .hero__in{ grid-template-columns:1fr; }
+  .hero__ctrl{
+    flex-direction:row; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:14px; text-align:left; padding-bottom:0;
+  }
+  .hero__cap{ max-width:none; }
   .about__body{ grid-template-columns:1fr; }
   .about__txt{ display:block; }
   .about__pins{ margin:28px 0 0; padding-top:0; }
@@ -676,6 +810,18 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
   .burger{ display:block; margin-left:auto; z-index:2; }
   .srv__peek{ display:none; }
   .blueprint{ grid-template-columns:repeat(2,1fr); }
+
+  /* на телефоне текст стоит поверх кадра, затемнение уходит снизу вверх */
+  .hero{ padding-top:88px; }
+  .hero__scrim{
+    background:
+      linear-gradient(to top, rgba(6,7,10,.96) 0%, rgba(6,7,10,.8) 38%, rgba(6,7,10,.52) 72%, rgba(6,7,10,.66) 100%),
+      linear-gradient(to bottom, rgba(6,7,10,.84) 0%, transparent 22%);
+  }
+  .hero__arw{ display:none; }          /* вместо стрелок свайп и полоски */
+  .hero h1{ margin-bottom:.34em; }
+  .hero__lead{ max-width:32ch; font-size:14.5px; }
+  .hero__act{ margin-top:18px; }
 }
 
 /* Телефон в ландшафте: экран низкий, меню должно помещаться целиком */
@@ -687,6 +833,11 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
 }
 
 @media (max-width:520px){
+  /* цифры складываются в компактную полосу, чтобы первый экран не рос */
+  .hero__meta{ display:grid; grid-template-columns:repeat(3,1fr); align-items:start; gap:12px; padding-top:14px; }
+  .hero__meta b{ font-size:17px; white-space:nowrap; }
+  .hero__meta span{ font-size:10.5px; line-height:1.3; color:var(--txt-dim-2); }
+  .hero__scroll{ display:none; }
   .figures__grid{ grid-template-columns:1fr; }
   .fig{ border-right:none; padding-left:0 !important; }
   .about__media{ grid-template-columns:1fr; }
@@ -699,5 +850,10 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
   .reveal{ opacity:1; transform:none; transition:none; }
   .bg__glow, .bg__stone{ animation:none; }
   .bg__cursor{ display:none; }
+  .hero__slide.is-on img{ animation:none; }
+  .hero h1 .l > b{ transform:none; animation:none; }
+  .hero__up{ opacity:1; transform:none; animation:none; }
+  .hero__bar.is-on i{ animation:none; width:100%; }
+  .hero__scroll i::after{ animation:none; }
   *{ transition-duration:.01ms !important; }
 }
