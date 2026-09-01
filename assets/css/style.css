@@ -1,5 +1,5 @@
 /* ============================================================
-   СТРОЙЭЛЕМЕНТ — лендинг
+   АСЭНА ГРУПП — лендинг
    Один шрифт (Onest), плотный вертикальный ритм.
    ============================================================ */
 
@@ -10,7 +10,8 @@
   --txt:        #EDEAE4;
   --txt-dim:    #90908B;
   --txt-dim-2:  #63625E;
-  --coral:      #F0705F;
+  --gold:       #D2B375;
+  --gold-dim:   #B49C60;
   --line:       rgba(255,255,255,.11);
   --line-soft:  rgba(255,255,255,.06);
 
@@ -52,7 +53,7 @@ h1,h2,h3{ margin:0; font-weight:600; letter-spacing:-.03em; }
 p{ margin:0 0 .95em; }
 ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 
-::selection{ background:var(--coral); color:#0A0B0E; }
+::selection{ background:var(--gold); color:#0A0B0E; }
 
 /* ---------- Атомы ---------- */
 
@@ -61,11 +62,11 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   font-weight:600;
   letter-spacing:.13em;
   text-transform:uppercase;
-  color:var(--coral);
+  color:var(--gold);
   margin:0 0 1.1em;
 }
 
-.accent{ color:var(--coral); }
+.accent{ color:var(--gold); }
 
 .h2{
   font-size:clamp(25px,3.3vw,49px);
@@ -89,9 +90,9 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   border-radius:6px;
   transition:border-color .25s var(--ease), background .25s var(--ease), color .25s var(--ease);
 }
-.btn:hover{ border-color:var(--coral); color:var(--coral); }
-.btn--solid{ background:var(--coral); border-color:var(--coral); color:#12100F; font-weight:600; }
-.btn--solid:hover{ background:transparent; color:var(--coral); }
+.btn:hover{ border-color:var(--gold); color:var(--gold); }
+.btn--solid{ background:var(--gold); border-color:var(--gold); color:#14110A; font-weight:600; }
+.btn--solid:hover{ background:transparent; color:var(--gold); }
 .btn--dark{ border-color:rgba(0,0,0,.22); color:#16181D; margin-top:20px; }
 .btn--dark:hover{ background:#16181D; border-color:#16181D; color:var(--paper); }
 
@@ -108,10 +109,10 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   inset:-25%;
   opacity:var(--bg-glow);
   background:
-    radial-gradient(36% 32% at 80% 8%,   rgba(240,112,95,.60), transparent 68%),
-    radial-gradient(42% 36% at 8%  66%,  rgba(43,71,200,.46),  transparent 70%),
-    radial-gradient(28% 26% at 58% 100%, rgba(240,112,95,.30), transparent 66%),
-    radial-gradient(34% 30% at 100% 52%, rgba(43,71,200,.26),  transparent 70%);
+    radial-gradient(36% 32% at 80% 8%,   rgba(210,179,117,.52), transparent 68%),
+    radial-gradient(42% 36% at 8%  66%,  rgba(62,84,124,.40),  transparent 70%),
+    radial-gradient(28% 26% at 58% 100%, rgba(210,179,117,.26), transparent 66%),
+    radial-gradient(34% 30% at 100% 52%, rgba(62,84,124,.22),  transparent 70%);
   animation:bgDrift 78s var(--ease) infinite alternate;
   will-change:transform;
 }
@@ -149,7 +150,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   inset:0;
   opacity:0;
   background:radial-gradient(420px 420px at var(--mx,50%) var(--my,40%),
-             rgba(240,112,95,.11), rgba(240,112,95,.04) 45%, transparent 70%);
+             rgba(210,179,117,.10), rgba(210,179,117,.035) 45%, transparent 70%);
   transition:opacity .6s var(--ease);
 }
 .bg.is-live .bg__cursor{ opacity:var(--bg-cursor); }
@@ -192,7 +193,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   display:flex; align-items:center;
   padding:8px 0;                 /* область нажатия 44px */
 }
-.hdr__logo img{ height:28px; width:auto; }
+.hdr__logo img{ height:26px; width:auto; }
 .nav-tel{ display:none; }
 
 .hdr__nav{ margin-left:auto; display:flex; gap:clamp(14px,1.8vw,30px); }
@@ -203,7 +204,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 }
 .hdr__nav a::after{
   content:""; position:absolute; left:0; bottom:-5px; height:1px; width:0;
-  background:var(--coral); transition:width .28s var(--ease);
+  background:var(--gold); transition:width .28s var(--ease);
 }
 /* расширяем область нажатия, не меняя вёрстку */
 .hdr__nav a::before{ content:""; position:absolute; inset:-11px -7px; }
@@ -215,7 +216,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   padding:9px 16px; border:1px solid var(--line); border-radius:6px;
   transition:border-color .25s var(--ease), color .25s var(--ease);
 }
-.hdr__tel:hover{ border-color:var(--coral); color:var(--coral); }
+.hdr__tel:hover{ border-color:var(--gold); color:var(--gold); }
 
 .burger{
   display:none; width:44px; height:44px; padding:0;
@@ -310,18 +311,18 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 .about__txt .mission{
   color:var(--txt);
   margin:26px 0 0; padding-left:14px;
-  border-left:2px solid var(--coral);
+  border-left:2px solid var(--gold);
   max-width:50ch;
 }
 .about__txt .mission span{
   display:block; font-size:12px; font-weight:600;
   letter-spacing:.13em; text-transform:uppercase;
-  color:var(--coral); margin-bottom:5px;
+  color:var(--gold); margin-bottom:5px;
 }
 
 .about__pins{ display:flex; gap:34px; margin:auto 0 4px; padding-top:28px; flex-wrap:wrap; }
 .about__pins li{
-  border-left:2px solid var(--coral); padding-left:13px;
+  border-left:2px solid var(--gold); padding-left:13px;
   display:flex; flex-direction:column;
 }
 .about__pins b{ font-size:20px; font-weight:600; letter-spacing:-.02em; }
@@ -379,7 +380,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 .fig i{
   font-style:normal; font-size:13px; font-weight:600;
   letter-spacing:.1em; text-transform:uppercase;
-  color:var(--coral); margin:9px 0 11px;
+  color:var(--gold); margin:9px 0 11px;
 }
 .fig span{ font-size:13.5px; color:var(--txt-dim); line-height:1.45; }
 
@@ -402,8 +403,8 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 .srv__i p{ margin:0; color:var(--txt-dim); font-size:14.5px; max-width:46ch; }
 
 @media (hover:hover){
-  .srv__i:hover{ padding-left:20px; border-bottom-color:var(--coral); }
-  .srv__i:hover h3{ color:var(--coral); }
+  .srv__i:hover{ padding-left:20px; border-bottom-color:var(--gold); }
+  .srv__i:hover h3{ color:var(--gold); }
 }
 
 .srv__peek{
@@ -444,7 +445,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   display:flex; flex-direction:column;
   transition:border-color .35s var(--ease), transform .45s var(--ease);
 }
-.card:hover{ border-color:rgba(240,112,95,.5); transform:translateY(-5px); }
+.card:hover{ border-color:rgba(210,179,117,.5); transform:translateY(-5px); }
 .card__img{ overflow:hidden; aspect-ratio:4/3.1; }
 .card__img img{
   width:100%; height:100%; object-fit:cover;
@@ -452,7 +453,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 }
 .card:hover .card__img img{ transform:scale(1.05); }
 .card__body{ padding:clamp(16px,1.5vw,24px); display:flex; flex-direction:column; flex:1; }
-.card__place{ font-size:13px; color:var(--coral); font-weight:500; margin:0 0 9px; }
+.card__place{ font-size:13px; color:var(--gold); font-weight:500; margin:0 0 9px; }
 .card h3{ font-size:clamp(18px,1.5vw,23px); line-height:1.16; margin-bottom:16px; }
 .card dl{
   margin-top:auto; display:grid; grid-template-columns:auto 1fr;
@@ -465,7 +466,7 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 .railx__bar i{ display:block; height:1px; background:var(--line); position:relative; }
 .railx__bar i::after{
   content:""; position:absolute; left:0; top:-1px; height:3px;
-  width:var(--w,12%); background:var(--coral);
+  width:var(--w,12%); background:var(--gold);
   transform:translateX(var(--x,0));
   transition:width .2s linear;
 }
@@ -510,9 +511,9 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
   gap:clamp(26px,4vw,66px);
   align-items:center;
 }
-.living .tag{ color:#B54A38; }
+.living .tag{ color:#8A6B2E; }
 .living .h2{ color:#16181D; margin-bottom:.6em; }
-.living .accent{ color:#B54A38; }
+.living .accent{ color:#8A6B2E; }
 .living__txt p{ color:#4A4C52; max-width:42ch; }
 
 .living__gal{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(9px,1vw,14px); }
@@ -526,6 +527,41 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 .living__gal figure:nth-child(1) img,
 .living__gal figure:nth-child(4) img{ aspect-ratio:16/8.2; }
 .living__gal figure:hover img{ transform:scale(1.03); }
+
+/* ============================================================
+   ПАРТНЁРЫ
+   ============================================================ */
+
+.partners{ position:relative; z-index:1; }
+.pt{
+  display:grid; grid-template-columns:repeat(3,1fr);
+  gap:clamp(12px,1.3vw,20px);
+}
+.pt__i{
+  display:flex; flex-direction:column;
+  padding:clamp(22px,2.2vw,32px);
+  background:var(--ink-2);
+  border:1px solid var(--line-soft);
+  border-radius:10px;
+  transition:border-color .3s var(--ease), transform .35s var(--ease);
+}
+a.pt__i:hover{ border-color:rgba(210,179,117,.5); transform:translateY(-4px); }
+.pt__role{
+  font-size:12px; font-weight:600; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--gold);
+}
+.pt__i h3{
+  font-size:clamp(20px,1.7vw,26px); line-height:1.15;
+  margin:14px 0 12px;
+}
+.pt__i p{ font-size:14.5px; color:var(--txt-dim); line-height:1.5; margin:0; }
+.pt__link{
+  margin-top:auto; padding-top:20px;
+  font-size:13.5px; color:var(--gold);
+  display:flex; align-items:center; gap:8px;
+}
+.pt__link i{ font-style:normal; transition:transform .3s var(--ease); }
+a.pt__i:hover .pt__link i{ transform:translateX(5px); }
 
 /* ============================================================
    КОНТАКТЫ
@@ -552,9 +588,9 @@ ul,ol,dl,dd{ margin:0; padding:0; list-style:none; }
 .cnt:last-child{ border-right:none; }
 .cnt__k{ font-size:12px; font-weight:600; letter-spacing:.13em; text-transform:uppercase; color:var(--txt-dim-2); }
 .cnt__v{ font-size:clamp(19px,1.85vw,28px); font-weight:600; letter-spacing:-.03em; line-height:1.2; word-break:break-word; }
-.cnt__a{ margin-top:auto; font-size:13px; color:var(--coral); }
-a.cnt:hover{ background:rgba(240,112,95,.06); }
-a.cnt:hover .cnt__v{ color:var(--coral); }
+.cnt__a{ margin-top:auto; font-size:13px; color:var(--gold); }
+a.cnt:hover{ background:rgba(210,179,117,.06); }
+a.cnt:hover .cnt__v{ color:var(--gold); }
 .cnt--static .cnt__a{ color:var(--txt-dim-2); }
 
 /* ============================================================
@@ -568,10 +604,10 @@ a.cnt:hover .cnt__v{ color:var(--coral); }
   display:flex; align-items:center; gap:20px; flex-wrap:wrap;
   font-size:13px; color:var(--txt-dim-2);
 }
-.ftr__logo{ height:22px; width:auto; opacity:.7; }
+.ftr__logo{ height:20px; width:auto; opacity:.8; }
 .ftr p{ margin:0; }
 .ftr a{ margin-left:auto; display:inline-block; padding:12px 0; transition:color .25s var(--ease); }
-.ftr a:hover{ color:var(--coral); }
+.ftr a:hover{ color:var(--gold); }
 
 /* ============================================================
    Появление при скролле
@@ -608,6 +644,7 @@ a.cnt:hover .cnt__v{ color:var(--coral); }
   .fc, .fc--flip{ grid-template-columns:1fr; }
   .fc--flip .fc__txt{ order:0; }
   .living__in{ grid-template-columns:1fr; }
+  .pt{ grid-template-columns:1fr; }
   .contacts__grid{ grid-template-columns:1fr; }
   .cnt{ border-right:none; padding-left:0 !important; padding-right:0; }
 }
@@ -632,7 +669,7 @@ a.cnt:hover .cnt__v{ color:var(--coral); }
   }
   .hdr__nav a::after{ display:none; }
   .hdr__nav .nav-tel{
-    display:block; color:var(--coral); border-bottom:none;
+    display:block; color:var(--gold); border-bottom:none;
     font-size:19px; font-weight:600; padding-top:20px;
   }
   .hdr__tel{ display:none; }
@@ -644,9 +681,9 @@ a.cnt:hover .cnt__v{ color:var(--coral); }
 /* Телефон в ландшафте: экран низкий, меню должно помещаться целиком */
 @media (max-width:860px) and (max-height:560px){
   .hero{ padding-top:88px; }
-  .hdr__nav{ padding-top:70px; padding-bottom:22px; }
-  .hdr__nav a{ font-size:19px; padding:8px 0; }
-  .hdr__nav .nav-tel{ font-size:17px; padding-top:14px; }
+  .hdr__nav{ padding-top:58px; padding-bottom:18px; }
+  .hdr__nav a{ font-size:17px; padding:6px 0; }
+  .hdr__nav .nav-tel{ font-size:16px; padding-top:12px; }
 }
 
 @media (max-width:520px){

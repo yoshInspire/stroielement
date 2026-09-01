@@ -19,7 +19,7 @@ from playwright.sync_api import sync_playwright
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SOURCE = "presentation.html"
-OUTPUT = "Стройэлемент-презентация.pdf"
+OUTPUT = "Асэна-Групп-презентация.pdf"
 
 # формат совпадает с презентацией заказчика: 1440x810, то есть 16:9
 SLIDE_W = "1440px"

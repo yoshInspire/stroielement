@@ -2,20 +2,20 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>СТРОЙЭЛЕМЕНТ. Презентация</title>
+<title>АСЭНА ГРУПП. Презентация</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ============================================================
-   СТРОЙЭЛЕМЕНТ — презентация, 1440x810 (16:9)
+   АСЭНА ГРУПП — презентация, 1440x810 (16:9)
    Источник дизайна: лендинг. Печать: Chrome -> PDF, фон включён.
    ============================================================ */
 
 :root{
   --ink:#0A0B0E; --ink-2:#101218; --paper:#F2EFE9;
   --txt:#EDEAE4; --dim:#90908B; --dim-2:#63625E;
-  --coral:#F0705F; --line:rgba(255,255,255,.11); --line-soft:rgba(255,255,255,.06);
+  --gold:#D2B375; --line:rgba(255,255,255,.11); --line-soft:rgba(255,255,255,.06);
   --f:"Onest","Segoe UI",system-ui,sans-serif;
 }
 *,*::before,*::after{ box-sizing:border-box; }
@@ -40,9 +40,9 @@ ul{ margin:0; padding:0; list-style:none; }
 .bg .glow{
   inset:-25%; opacity:.34;
   background:
-    radial-gradient(36% 32% at 80% 8%,  rgba(240,112,95,.60), transparent 68%),
-    radial-gradient(42% 36% at 8% 66%,  rgba(43,71,200,.46),  transparent 70%),
-    radial-gradient(28% 26% at 58% 100%,rgba(240,112,95,.30), transparent 66%);
+    radial-gradient(36% 32% at 80% 8%,  rgba(210,179,117,.52), transparent 68%),
+    radial-gradient(42% 36% at 8% 66%,  rgba(62,84,124,.40),  transparent 70%),
+    radial-gradient(28% 26% at 58% 100%,rgba(210,179,117,.26), transparent 66%);
 }
 .bg .stone{
   inset:0; opacity:.07; mix-blend-mode:soft-light;
@@ -58,8 +58,8 @@ ul{ margin:0; padding:0; list-style:none; }
 .in{ position:relative; z-index:1; height:100%; padding:64px 76px; display:flex; flex-direction:column; }
 
 /* ---------- служебное ---------- */
-.tag{ font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--coral); }
-.accent{ color:var(--coral); }
+.tag{ font-size:13px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+.accent{ color:var(--gold); }
 .h{ font-size:52px; line-height:1.06; }
 .h--sm{ font-size:40px; line-height:1.08; }
 .lead{ font-size:20px; line-height:1.55; color:var(--dim); }
@@ -74,7 +74,7 @@ ul{ margin:0; padding:0; list-style:none; }
   position:absolute; inset:0 46% 0 0; z-index:2;
   padding:76px; display:flex; flex-direction:column; justify-content:space-between;
 }
-.cover__logo{ height:42px; width:auto; align-self:flex-start; flex:0 0 auto; }
+.cover__logo{ height:104px; width:auto; align-self:flex-start; flex:0 0 auto; }
 .cover h1{ font-size:76px; line-height:1; letter-spacing:-.042em; }
 .cover__sub{ font-size:19px; color:var(--dim); margin-top:22px; max-width:30ch; line-height:1.5; }
 .cover__shot{ position:absolute; inset:0 0 0 54%; z-index:1; }
@@ -91,8 +91,8 @@ ul{ margin:0; padding:0; list-style:none; }
 /* ---------- 2. о компании ---------- */
 .about__body{ display:grid; grid-template-columns:1fr .78fr; gap:56px; flex:1; align-items:center; }
 .about__body p + p{ margin-top:18px; }
-.mission{ margin-top:28px; padding-left:16px; border-left:2px solid var(--coral); max-width:46ch; }
-.mission span{ display:block; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--coral); margin-bottom:6px; }
+.mission{ margin-top:28px; padding-left:16px; border-left:2px solid var(--gold); max-width:46ch; }
+.mission span{ display:block; font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); margin-bottom:6px; }
 .mission p{ font-size:19px; line-height:1.5; color:var(--txt); }
 .about__pics{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
 .about__pics img{ width:100%; height:210px; object-fit:cover; border-radius:8px; }
@@ -104,7 +104,7 @@ ul{ margin:0; padding:0; list-style:none; }
 .fig:last-child{ border-right:none; }
 .fig:nth-child(n+2){ padding-left:30px; }
 .fig b{ display:block; font-size:64px; font-weight:600; letter-spacing:-.05em; line-height:1; }
-.fig i{ display:block; font-style:normal; font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--coral); margin:14px 0 12px; }
+.fig i{ display:block; font-style:normal; font-size:13px; font-weight:600; letter-spacing:.12em; text-transform:uppercase; color:var(--gold); margin:14px 0 12px; }
 .fig span{ font-size:15px; color:var(--dim); line-height:1.45; }
 
 /* ---------- 4. заказчики ---------- */
@@ -130,8 +130,8 @@ ul{ margin:0; padding:0; list-style:none; }
 
 /* ---------- 10. жилые интерьеры (светлый) ---------- */
 .light{ background:var(--paper); color:#16181D; }
-.light .tag{ color:#B54A38; }
-.light .accent{ color:#B54A38; }
+.light .tag{ color:#8A6B2E; }
+.light .accent{ color:#8A6B2E; }
 .light .dir p{ color:#4A4C52; }
 .light .mark span{ color:#8A8B90; }
 .light .num{ color:#8A8B90; }
@@ -142,13 +142,21 @@ ul{ margin:0; padding:0; list-style:none; }
 .card__img{ height:224px; }
 .card__img img{ width:100%; height:100%; object-fit:cover; }
 .card__b{ padding:22px 22px 24px; }
-.card__place{ font-size:13px; color:var(--coral); font-weight:500; margin-bottom:8px; }
+.card__place{ font-size:13px; color:var(--gold); font-weight:500; margin-bottom:8px; }
 .card h3{ font-size:22px; line-height:1.16; min-height:52px; }
 .card dl{ display:grid; grid-template-columns:auto 1fr; gap:6px 14px; margin-top:16px; padding-top:14px; border-top:1px solid var(--line-soft); }
 .card dt{ font-size:12.5px; color:var(--dim-2); }
 .card dd{ font-size:13.5px; color:var(--dim); margin:0; line-height:1.4; }
 
-/* ---------- 14. контакты ---------- */
+/* ---------- 14. партнёры ---------- */
+.pt{ display:grid; grid-template-columns:repeat(3,1fr); gap:22px; flex:1; align-content:center; }
+.pt__i{ background:var(--ink-2); border:1px solid var(--line-soft); border-radius:10px; padding:34px 30px 36px; display:flex; flex-direction:column; }
+.pt__role{ font-size:12px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+.pt__i h3{ font-size:28px; line-height:1.15; margin:16px 0 14px; }
+.pt__i p{ font-size:15px; line-height:1.55; color:var(--dim); }
+.pt__link{ margin-top:auto; padding-top:22px; font-size:14px; color:var(--gold); }
+
+/* ---------- 15. контакты ---------- */
 .cta{ font-size:50px; line-height:1.08; }
 .cnt{ display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid var(--line); margin-top:56px; }
 .cnt > div{ padding:34px 30px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
@@ -175,11 +183,11 @@ ul{ margin:0; padding:0; list-style:none; }
   <div class="bg"><i class="glow"></i><i class="stone"></i><i class="vig"></i></div>
   <div class="cover__shot"><img src="assets/img/hero-opus.jpg" alt=""></div>
   <div class="cover__txt">
-    <img class="cover__logo" src="assets/img/logo.png" alt="СТРОЙЭЛЕМЕНТ">
+    <img class="cover__logo" src="assets/img/logo-full.png" alt="АСЭНА ГРУПП">
     <div>
-      <p class="tag">Строим с 2010 года в России и ОАЭ</p>
+      <p class="tag">Возводим вечность</p>
       <h1 style="margin-top:20px">Строительство<br>и <span class="accent">управление</span><br>проектами</h1>
-      <p class="cover__sub">Полный цикл строительных работ зданий и помещений коммерческой недвижимости под ключ.</p>
+      <p class="cover__sub">Полный цикл строительных работ зданий и помещений коммерческой недвижимости под ключ. Работаем в России и ОАЭ с 2010 года.</p>
     </div>
     <div class="cover__meta">
       <div><b>15</b><span>лет на рынке</span></div>
@@ -211,7 +219,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">02</div>
 </section>
 
@@ -227,7 +235,7 @@ ul{ margin:0; padding:0; list-style:none; }
       <div class="fig"><b>200+</b><i>клиентов</i><span>благодарных заказчиков</span></div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">03</div>
 </section>
 
@@ -243,7 +251,7 @@ ul{ margin:0; padding:0; list-style:none; }
       <li>Аэропорт Внуково</li><li>ВкусВилл</li><li>Минюст РФ</li>
     </ul>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">04</div>
 </section>
 
@@ -264,7 +272,7 @@ ul{ margin:0; padding:0; list-style:none; }
       <li><h3>Управление проектами</h3><p>Бюджет, график, подрядчики и приёмка работ.</p></li>
     </ul>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">05</div>
 </section>
 
@@ -285,7 +293,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">06</div>
 </section>
 
@@ -306,7 +314,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">07</div>
 </section>
 
@@ -327,7 +335,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">08</div>
 </section>
 
@@ -348,7 +356,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">09</div>
 </section>
 
@@ -369,7 +377,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">10</div>
 </section>
 
@@ -406,7 +414,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </article>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">11</div>
 </section>
 
@@ -443,7 +451,7 @@ ul{ margin:0; padding:0; list-style:none; }
       </article>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">12</div>
 </section>
 
@@ -480,24 +488,54 @@ ul{ margin:0; padding:0; list-style:none; }
       </article>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
   <div class="num">13</div>
 </section>
 
-<!-- ═══════════ 14. КОНТАКТЫ ═══════════ -->
+<!-- ═══════════ 14. ПАРТНЁРЫ ═══════════ -->
+<section class="slide">
+  <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
+  <div class="in">
+    <p class="tag">Партнёры</p>
+    <h2 class="h--sm" style="margin-top:16px">Работаем в связке<br>с <span class="accent">проверенными командами</span></h2>
+    <div class="pt">
+      <div class="pt__i">
+        <span class="pt__role">Дизайн интерьеров</span>
+        <h3>Елена Крылова</h3>
+        <p>Ведёт дизайн интерьеров в наших проектах. Студия дизайна элитных интерьеров класса люкс в Москве: дизайн, консалтинг, реконструкция.</p>
+        <span class="pt__link">helendesign.ru</span>
+      </div>
+      <div class="pt__i">
+        <span class="pt__role">BIM-проектирование</span>
+        <h3>СтройГеоПроект</h3>
+        <p>Разработка BIM-моделей и информационное моделирование на всех этапах проектирования, от анализа исходных данных до сдачи и сопровождения проекта.</p>
+        <span class="pt__link">stroygeoproekt.ru</span>
+      </div>
+      <div class="pt__i">
+        <span class="pt__role">Дорожные материалы</span>
+        <h3>Битулаб</h3>
+        <p>Дорожные битумы и битумопроизводные. Официальный дистрибьютор компании «Газпромнефть-Битумные материалы».</p>
+      </div>
+    </div>
+  </div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
+  <div class="num">14</div>
+</section>
+
+<!-- ═══════════ 15. КОНТАКТЫ ═══════════ -->
 <section class="slide">
   <div class="bg"><i class="glow"></i><i class="stone"></i><i class="grid"><b></b><b></b><b></b><b></b><b></b></i><i class="vig"></i></div>
   <div class="in" style="justify-content:center">
     <p class="tag">Контакты</p>
-    <h2 class="cta" style="margin-top:20px">Команда специалистов «Строй Элемент»<br>готова воплотить в жизнь<br><span class="accent">все ваши самые смелые идеи</span></h2>
+    <h2 class="cta" style="margin-top:20px">Команда специалистов «Асэна Групп»<br>готова воплотить в жизнь<br><span class="accent">все ваши самые смелые идеи</span></h2>
     <div class="cnt">
       <div><span class="cnt__k">Телефон</span><span class="cnt__v">+7 910 423 82 55</span></div>
       <div><span class="cnt__k">Почта</span><span class="cnt__v">stroy.element77@gmail.com</span></div>
       <div><span class="cnt__k">География</span><span class="cnt__v">Россия и ОАЭ</span></div>
     </div>
   </div>
-  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Строительство и управление проектами</span></div>
-  <div class="num">14</div>
+  <div class="mark"><img src="assets/img/logo.png" alt=""><span>Возводим вечность</span></div>
+  <div class="num">15</div>
 </section>
 
 </body>
