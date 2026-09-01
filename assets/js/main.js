@@ -48,11 +48,9 @@
     var slides = [].slice.call(hero.querySelectorAll('.hero__slide'));
     var bars = [].slice.call(hero.querySelectorAll('.hero__bar'));
     var cap = hero.querySelector('.hero__cap');
-    var num = hero.querySelector('.hero__num b');
-    var HOLD = 7000;                 // столько же стоит в @keyframes heroBar
-    var cur = 0, timer = null, swap = null;
-
-    var two = function (n) { return (n < 10 ? '0' : '') + n; };
+    var HOLD = 3000;                 // столько же стоит в @keyframes heroBar
+    var cur = 0, timer = null, swap = null, fade = null;
+    var FADE = 1000;                 // столько же стоит в transition у .hero__slide
 
     var tick = function () {
       clearTimeout(timer);
@@ -61,31 +59,37 @@
     };
 
     var show = function (n) {
+      var prev = slides[cur];
       cur = (n + slides.length) % slides.length;
 
       slides.forEach(function (s, k) { s.classList.toggle('is-on', k === cur); });
+
+      // предыдущий кадр держим видимым, пока новый не проявился полностью
+      if (prev !== slides[cur]) {
+        prev.classList.add('was-on');
+        clearTimeout(fade);
+        fade = setTimeout(function () {
+          slides.forEach(function (s) {
+            if (!s.classList.contains('is-on')) s.classList.remove('was-on');
+          });
+        }, FADE);
+      }
       bars.forEach(function (b, k) {
         b.classList.remove('is-on');
         if (k === cur) { void b.offsetWidth; b.classList.add('is-on'); }  // перезапуск полосы
       });
-      // подпись гаснет, меняется вместе со счётчиком и возвращается
+      // подпись гаснет, меняется и возвращается
       cap.classList.remove('is-in');
       clearTimeout(swap);
       swap = setTimeout(function () {
         cap.querySelector('b').textContent = slides[cur].dataset.title;
         cap.querySelector('i').textContent = slides[cur].dataset.place;
         cap.classList.add('is-in');
-        num.textContent = two(cur + 1);
       }, 240);
 
       tick();
     };
 
-    hero.querySelectorAll('.hero__arw').forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        show(cur + Number(btn.dataset.dir));
-      });
-    });
     bars.forEach(function (b, k) {
       b.addEventListener('click', function () { if (k !== cur) show(k); });
     });
