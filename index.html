@@ -3,11 +3,11 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>АСЭНА ГРУПП. Строительство и управление проектами</title>
-<meta name="description" content="АСЭНА ГРУПП: полный цикл строительных работ коммерческой недвижимости под ключ с 2010 года. Ремонт и интерьеры жилых помещений. Россия и ОАЭ.">
+<title>АСЭНА ГРУПП. Строительство коммерческой недвижимости под ключ</title>
+<meta name="description" content="АСЭНА ГРУПП: генеральный подряд, строительство, реконструкция и отделка коммерческой недвижимости под ключ. 15 лет, 1 000 000+ м², 500+ проектов. Россия и ОАЭ.">
 <meta name="theme-color" content="#0A0B0E">
-<meta property="og:title" content="АСЭНА ГРУПП. Возводим вечность">
-<meta property="og:description" content="Полный цикл строительных работ под ключ. 15 лет, 500+ проектов, Россия и ОАЭ.">
+<meta property="og:title" content="АСЭНА ГРУПП. Строим коммерческую недвижимость под ключ">
+<meta property="og:description" content="Генеральный подряд, строительство, реконструкция и отделка коммерческих объектов. 15 лет, 500+ проектов, Россия и ОАЭ.">
 <meta property="og:image" content="assets/img/hero-opus.jpg">
 <meta property="og:type" content="website">
 <link rel="icon" href="assets/img/favicon.png">
@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <!-- ?v= в конце пути сбрасывает кэш браузера: после правки css или js увеличить номер -->
-<link rel="stylesheet" href="assets/css/style.css?v=3">
+<link rel="stylesheet" href="assets/css/style.css?v=4">
 </head>
 <body>
 
@@ -32,7 +32,9 @@
 
 <div class="blueprint" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
 
-<!-- ========== ШАПКА ========== -->
+<!-- ========== ШАПКА ==========
+     Кнопка «Обсудить проект» видна всегда, на любом экране и на любой высоте
+     прокрутки: это главный путь к заявке -->
 <header class="hdr" id="hdr">
   <a class="hdr__logo" href="#top" aria-label="АСЭНА ГРУПП, на главную">
     <img src="assets/img/logo.png" alt="АСЭНА ГРУПП">
@@ -41,12 +43,13 @@
     <a href="#about">О компании</a>
     <a href="#services">Услуги</a>
     <a href="#projects">Проекты</a>
-    <a href="#focus">Направления</a>
-    <a href="#partners">Партнёры</a>
+    <a href="#dubai">Дубай</a>
+    <a href="#spec">Специализация</a>
     <a href="#contacts">Контакты</a>
     <a class="nav-tel" href="tel:+79104238255">+7 910 423 82 55</a>
   </nav>
   <a class="hdr__tel" href="tel:+79104238255">+7 910 423 82 55</a>
+  <button class="hdr__cta" type="button" data-lead="Шапка сайта">Обсудить проект <i>&rarr;</i></button>
   <button class="burger" id="burger" aria-label="Меню" aria-expanded="false"><i></i><i></i></button>
 </header>
 
@@ -79,14 +82,15 @@
       <div class="hero__text">
         <p class="tag hero__up">Возводим вечность</p>
         <h1>
-          <span class="l" style="--i:0"><b>Строительство</b></span>
-          <span class="l" style="--i:1"><b>и <em class="accent">управление</em></b></span>
-          <span class="l" style="--i:2"><b>проектами</b></span>
+          <span class="l" style="--i:0"><b>Строим коммерческую</b></span>
+          <span class="l" style="--i:1"><b>недвижимость</b></span>
+          <span class="l" style="--i:2"><b><em class="accent">под ключ</em></b></span>
         </h1>
-        <p class="hero__lead hero__up">Полный цикл строительных работ зданий и помещений коммерческой недвижимости под ключ. Работаем в России и ОАЭ с 2010 года.</p>
+        <p class="hero__lead hero__up">Генеральный подряд, строительство, реконструкция и отделка коммерческих объектов. Берём проект целиком: от проектирования и инженерных систем до комплектации и сдачи готового объекта.</p>
+        <p class="hero__geo hero__up">Россия · ОАЭ · с 2010 года</p>
         <div class="hero__act hero__up">
-          <a class="btn btn--solid" href="#projects">Смотреть проекты</a>
-          <a class="btn btn--ghost" href="tel:+79104238255">+7 910 423 82 55</a>
+          <button class="btn btn--solid" type="button" data-lead="Первый экран">Обсудить проект</button>
+          <a class="btn btn--ghost" href="#projects">Смотреть проекты</a>
         </div>
       </div>
 
@@ -112,17 +116,39 @@
   </div>
 </section>
 
+<!-- ========== НАМ ДОВЕРЯЮТ ==========
+     Заказчики подняты сразу под первый экран: это самое сильное
+     доказательство уровня компании, ему нельзя лежать в подвале.
+     Логотипов у нас нет, поэтому названия набраны крупным текстом -->
+<section class="sect trust" id="trust">
+  <div class="trust__head">
+    <p class="tag">Нам доверяют сложные проекты</p>
+    <p class="trust__lead">Работаем с банками, государственными учреждениями, ритейлом и крупным бизнесом. От проектирования до сдачи объекта — одна команда и единая ответственность за результат.</p>
+  </div>
+  <ul class="trust__list">
+    <li>Сбербанк</li>
+    <li>Банк ВТБ</li>
+    <li>МТС Банк</li>
+    <li>Абсолют Банк</li>
+    <li>Аэропорт Внуково</li>
+    <li>ВкусВилл</li>
+    <li>Минюст РФ</li>
+    <li>Город Столиц</li>
+    <li>ФКР Москвы</li>
+  </ul>
+</section>
+
 <!-- ========== О КОМПАНИИ ========== -->
 <section class="sect about" id="about">
   <div class="sect__head">
     <p class="tag">О компании</p>
-    <h2 class="h2">Строим и ремонтируем коммерческую<br>и <span class="accent">жилую недвижимость</span></h2>
+    <h2 class="h2">Генеральный подрядчик<br>коммерческой <span class="accent">недвижимости</span></h2>
   </div>
 
   <div class="about__body">
     <div class="about__txt">
       <p class="lead reveal">Компания основана в 2010 году. Основные заказчики это коммерческие структуры: банки и банковская сфера, здания, ритейл, офисы.</p>
-      <p class="reveal">В 2023 году мы завершили офис в знаменитом The Opus Tower by Omniyat, спроектированном Захой Хадид. Компания расширила свою деятельность, теперь мы занимаемся строительством и ремонтом как коммерческой, так и жилой недвижимости в России и Дубае.</p>
+      <p class="reveal">В 2023 году мы завершили офис в знаменитом The Opus Tower by Omniyat, спроектированном Захой Хадид. Сегодня мы ведём строительство и реконструкцию коммерческих объектов в России и Дубае, отвечая за весь цикл работ по одному договору.</p>
 
       <p class="mission reveal"><span>Наша миссия</span>Создавать эстетичные, функциональные и комфортные пространства, идеально адаптированные под задачи бизнеса и потребности жизни.</p>
 
@@ -137,160 +163,209 @@
       <figure class="about__off reveal"><img src="assets/img/dubai-onyx.jpg" alt="Ресепшн из оникса, офис в Дубае" loading="lazy"></figure>
     </div>
   </div>
-
-  <div class="clients reveal">
-    <p class="tag">Среди наших заказчиков</p>
-    <ul>
-      <li>Сбербанк</li>
-      <li>Банк ВТБ</li>
-      <li>МТС Банк</li>
-      <li>Абсолют Банк</li>
-      <li>Город Столиц</li>
-      <li>ФКР Москвы</li>
-      <li>Аэропорт Внуково</li>
-      <li>ВкусВилл</li>
-      <li>Минюст РФ</li>
-    </ul>
-  </div>
 </section>
 
-<!-- ========== ЦИФРЫ ========== -->
-<section class="sect figures" id="figures">
-  <p class="tag">Факты в цифрах</p>
-  <div class="figures__grid">
-    <div class="fig reveal"><b>15</b><i>лет</i><span>опыт работы по всей России, включая Крым и новые регионы</span></div>
-    <div class="fig reveal"><b>1 000 000+</b><i>кв. м</i><span>построено и введено в эксплуатацию</span></div>
-    <div class="fig reveal"><b>500+</b><i>проектов</i><span>реализовано с 2010 года</span></div>
-    <div class="fig reveal"><b>200+</b><i>клиентов</i><span>благодарных заказчиков</span></div>
+<!-- ========== КАК МЫ РАБОТАЕМ ==========
+     Главный смысловой блок: объясняет, почему выгодно отдать объект целиком.
+     Пять шагов вместо перечисления услуг — снимает у заказчика тревогу
+     «а что будет происходить после подписания договора» -->
+<section class="sect flow" id="flow">
+  <div class="sect__head">
+    <p class="tag">Как мы работаем</p>
+    <h2 class="h2">Один подрядчик.<br>Одна <span class="accent">ответственность за результат</span></h2>
+    <p class="flow__lead reveal">Не нужно координировать десятки подрядчиков и сводить их между собой. Мы объединяем проектирование, строительство, инженерию, отделку и комплектацию в один процесс. Вы ставите задачу — мы отвечаем за её реализацию.</p>
   </div>
+
+  <ol class="flow__list">
+    <li class="flow__i reveal">
+      <b>01</b>
+      <h3>Обсуждаем задачу</h3>
+      <p>Изучаем объект, исходные данные, требования и сроки.</p>
+    </li>
+    <li class="flow__i reveal">
+      <b>02</b>
+      <h3>Формируем решение</h3>
+      <p>Определяем состав работ, этапы, сроки и бюджет.</p>
+    </li>
+    <li class="flow__i reveal">
+      <b>03</b>
+      <h3>Запускаем проект</h3>
+      <p>Собираем команду и организуем все процессы на площадке.</p>
+    </li>
+    <li class="flow__i reveal">
+      <b>04</b>
+      <h3>Управляем реализацией</h3>
+      <p>Контролируем строительство, инженерию, отделку, поставки и подрядчиков.</p>
+    </li>
+    <li class="flow__i reveal">
+      <b>05</b>
+      <h3>Передаём объект</h3>
+      <p>Проводим финальный контроль качества и сдаём готовое пространство.</p>
+    </li>
+  </ol>
 </section>
 
 <!-- ========== УСЛУГИ ========== -->
 <section class="sect services" id="services">
   <div class="sect__head">
-    <p class="tag">Что мы делаем</p>
-    <h2 class="h2">Полный цикл строительных работ зданий<br>и помещений коммерческой недвижимости <span class="accent">под ключ</span></h2>
+    <p class="tag">Что мы берём на себя</p>
+    <h2 class="h2">Полный цикл работ<br>на объекте <span class="accent">под ключ</span></h2>
   </div>
 
   <ul class="srv" id="srv">
     <li class="srv__i reveal" data-img="assets/img/kostroma-raw.jpg">
-      <h3>Проектирование</h3><p>Обмеры, концепция, рабочая документация и согласования.</p>
+      <h3><b>01</b>Проектирование</h3><p>Обмеры, концепция, рабочая документация, технические решения и согласования.</p>
     </li>
     <li class="srv__i reveal" data-img="assets/img/kostroma-yard.jpg">
-      <h3>Генеральный подряд</h3><p>Полная ответственность за объект и сроки по одному договору.</p>
-    </li>
-    <li class="srv__i reveal" data-img="assets/img/gates.jpg">
-      <h3>Бронированные конструкции</h3><p>Изготовление, монтаж и сертификация. Шлюзовые кабины и защищённые зоны.</p>
-    </li>
-    <li class="srv__i reveal" data-img="assets/img/bank-branch.jpg">
-      <h3>Слаботочные системы</h3><p>Видеонаблюдение, охранные системы, контроль доступа, пожарная безопасность.</p>
-    </li>
-    <li class="srv__i reveal" data-img="assets/img/moscow-corridor.jpg">
-      <h3>Отделочные работы</h3><p>Черновая и чистовая отделка помещений любой сложности.</p>
+      <h3><b>02</b>Генеральный подряд</h3><p>Строительство, реконструкция и ремонт объекта. Полная ответственность за площадку и сроки по одному договору.</p>
     </li>
     <li class="srv__i reveal" data-img="assets/img/dubai-window.jpg">
-      <h3>Инженерные системы</h3><p>Внутренние и наружные сети, вентиляция, электрика, климат.</p>
+      <h3><b>03</b>Инженерные системы</h3><p>Внутренние и наружные сети, электроснабжение, вентиляция, кондиционирование, климат.</p>
+    </li>
+    <li class="srv__i reveal" data-img="assets/img/bank-branch.jpg">
+      <h3><b>04</b>Слаботочные системы</h3><p>Видеонаблюдение, охранные системы, контроль доступа, пожарная безопасность.</p>
+    </li>
+    <li class="srv__i reveal" data-img="assets/img/gates.jpg">
+      <h3><b>05</b>Бронированные конструкции</h3><p>Изготовление, монтаж и сертификация. Шлюзовые кабины и защищённые зоны.</p>
+    </li>
+    <li class="srv__i reveal" data-img="assets/img/moscow-corridor.jpg">
+      <h3><b>06</b>Отделочные работы</h3><p>Черновая и чистовая отделка, сложные материалы и индивидуальные решения.</p>
     </li>
     <li class="srv__i reveal" data-img="assets/img/moscow-lounge.jpg">
-      <h3>Комплектация</h3><p>Мебель, элементы декора и предметы интерьера, включая индивидуальный заказ.</p>
+      <h3><b>07</b>Комплектация</h3><p>Мебель, освещение, элементы декора и предметы интерьера, включая индивидуальный заказ.</p>
     </li>
     <li class="srv__i reveal" data-img="assets/img/dubai-meeting.jpg">
-      <h3>Управление проектами</h3><p>Бюджет, график, подрядчики и приёмка работ.</p>
+      <h3><b>08</b>Управление проектами</h3><p>Бюджет, график, подрядчики, поставки, качество и приёмка работ.</p>
     </li>
   </ul>
   <div class="srv__peek" id="srvPeek" aria-hidden="true"><img src="assets/img/dubai-lobby.jpg" alt=""></div>
 </section>
 
-<!-- ========== ПРОЕКТЫ ========== -->
+<!-- ========== ПОЧЕМУ МЫ ==========
+     Отвечает на главный вопрос заказчика: «почему я должен отдать вам объект».
+     Сюда же собраны все цифры, поэтому отдельного блока с цифрами больше нет -->
+<section class="sect why" id="why">
+  <div class="sect__head">
+    <p class="tag">Почему АСЭНА ГРУПП</p>
+    <h2 class="h2">Почему нам доверяют<br><span class="accent">сложные объекты</span></h2>
+  </div>
+
+  <div class="why__grid">
+    <div class="why__i reveal"><b>15 лет</b><span>Реализуем строительные и интерьерные проекты с 2010 года.</span></div>
+    <div class="why__i reveal"><b>1 000 000+ м²</b><span>Построено и введено в эксплуатацию за время работы компании.</span></div>
+    <div class="why__i reveal"><b>500+ проектов</b><span>От офисов и банковских отделений до государственных и премиальных объектов.</span></div>
+    <div class="why__i reveal"><b>200+ клиентов</b><span>Благодарных заказчиков за время работы компании.</span></div>
+    <div class="why__i reveal"><b>Полный цикл</b><span>Проектирование, строительство, инженерия, отделка и комплектация в одной команде.</span></div>
+    <div class="why__i reveal"><b>Россия и ОАЭ</b><span>Работаем по всей России, включая Крым и новые регионы, и в Дубае.</span></div>
+    <div class="why__i reveal"><b>Контроль результата</b><span>Управляем сроками, бюджетом, качеством и всеми участниками проекта.</span></div>
+    <div class="why__i reveal"><b>Сложные задачи</b><span>Инженерия, реконструкция, вип-отделения, защищённые зоны и нестандартные интерьеры.</span></div>
+  </div>
+</section>
+
+<!-- ========== ПРОЕКТЫ ==========
+     Карточка открывает кейс: описание, факты и большая галерея.
+     Содержимое кейса лежит в <template> в конце страницы, id совпадает
+     со значением data-case у карточки. Фотографии внутри <template>
+     браузер не грузит, пока кейс не открыли -->
 <section class="sect projects" id="projects">
   <div class="sect__head projects__head">
     <div>
       <p class="tag">Портфолио</p>
-      <h2 class="h2">Избранные <span class="accent">объекты</span></h2>
+      <h2 class="h2">Проекты, которыми мы <span class="accent">гордимся</span></h2>
     </div>
+    <p class="projects__hint">Нажмите на объект, чтобы открыть кейс</p>
   </div>
 
   <div class="railx" id="railx">
     <div class="railx__track">
 
-      <article class="card">
-        <div class="card__img"><img src="assets/img/dubai-atrium.jpg" alt="Офис в The Opus Tower, Дубай" loading="lazy"></div>
+      <article class="card" data-case="case-opus" tabindex="0" role="button" aria-label="Открыть кейс: The Opus Tower by Omniyat">
+        <div class="card__img"><img src="assets/img/dubai-atrium.jpg" alt="Офис в The Opus Tower, Дубай" loading="lazy"><span class="card__flag">Дубай, ОАЭ</span></div>
         <div class="card__body">
-          <p class="card__place">Дубай, ОАЭ</p>
           <h3>The Opus Tower<br>by Omniyat</h3>
-          <dl><dt>Работы</dt><dd>Офис коммерческой компании</dd><dt>Период</dt><dd>с апреля по декабрь 2023</dd><dt>Площадь</dt><dd>330 м²</dd></dl>
+          <p class="card__sub">Офис коммерческой компании</p>
+          <p class="card__facts">330 м² · 2023</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
         </div>
       </article>
 
-      <article class="card">
-        <div class="card__img"><img src="assets/img/kostroma-yard.jpg" alt="Административное здание в Костроме" loading="lazy"></div>
+      <article class="card" data-case="case-kostroma" tabindex="0" role="button" aria-label="Открыть кейс: Управление Минюста по Костромской области">
+        <div class="card__img"><img src="assets/img/kostroma-yard.jpg" alt="Административное здание в Костроме" loading="lazy"><span class="card__flag">Кострома</span></div>
         <div class="card__body">
-          <p class="card__place">Кострома, ул. Лесная, 11</p>
           <h3>Управление Минюста<br>по Костромской области</h3>
-          <dl><dt>Работы</dt><dd>Ремонт и реставрация, наружные инженерные сети, благоустройство</dd><dt>Период</dt><dd>с апреля по сентябрь 2024</dd><dt>Площадь</dt><dd>4 500 м²</dd></dl>
+          <p class="card__sub">Административное здание</p>
+          <p class="card__facts">4 500 м² · 2024</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
         </div>
       </article>
 
-      <article class="card">
-        <div class="card__img"><img src="assets/img/moscow-corridor.jpg" alt="Офисное здание на Садовнической, Москва" loading="lazy"></div>
+      <article class="card" data-case="case-moscow" tabindex="0" role="button" aria-label="Открыть кейс: офисное здание в Москве">
+        <div class="card__img"><img src="assets/img/moscow-corridor.jpg" alt="Офисное здание на Садовнической, Москва" loading="lazy"><span class="card__flag">Москва</span></div>
         <div class="card__body">
-          <p class="card__place">Москва, ул. Садовническая, 12</p>
           <h3>Офисное<br>здание</h3>
-          <dl><dt>Работы</dt><dd>Ремонтные работы здания</dd><dt>Период</dt><dd>с октября 2021 по июнь 2022</dd><dt>Площадь</dt><dd>1 700 м²</dd></dl>
+          <p class="card__sub">Ул. Садовническая, 12</p>
+          <p class="card__facts">1 700 м² · 2021–2022</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
         </div>
       </article>
 
-      <article class="card">
-        <div class="card__img"><img src="assets/img/college-class.jpg" alt="Московский колледж бизнес-технологий" loading="lazy"></div>
+      <article class="card" data-case="case-college" tabindex="0" role="button" aria-label="Открыть кейс: Московский колледж бизнес-технологий">
+        <div class="card__img"><img src="assets/img/college-class.jpg" alt="Московский колледж бизнес-технологий" loading="lazy"><span class="card__flag">Москва</span></div>
         <div class="card__body">
-          <p class="card__place">Москва</p>
           <h3>Московский колледж<br>бизнес-технологий</h3>
-          <dl><dt>Работы</dt><dd>Ремонтные работы в помещениях</dd><dt>Период</dt><dd>с мая по август 2025</dd><dt>Площадь</dt><dd>4 000 м²</dd></dl>
+          <p class="card__sub">Образовательный объект</p>
+          <p class="card__facts">4 000 м² · 2025</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
         </div>
       </article>
 
-      <article class="card">
-        <div class="card__img"><img src="assets/img/bank-makeevka.jpg" alt="Отделение Сбербизнес после переформатирования, Макеевка" loading="lazy"></div>
+      <article class="card" data-case="case-sochi" tabindex="0" role="button" aria-label="Открыть кейс: вип-отделение Сбербанка в Сочи">
+        <div class="card__img"><img src="assets/img/bank-sochi.jpg" alt="VIP-отделение Сбербанка в Сочи" loading="lazy"><span class="card__flag">Сочи</span></div>
         <div class="card__body">
-          <p class="card__place">ДНР, Макеевка</p>
-          <h3>Отделение<br>Сбербизнес</h3>
-          <dl><dt>Работы</dt><dd>Переформатирование отделения</dd><dt>Период</dt><dd>с декабря 2024 по январь 2025</dd><dt>Адрес</dt><dd>ул. 250-летия Донбасса, 5Г</dd></dl>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__img"><img src="assets/img/admin-office.jpg" alt="Административное здание" loading="lazy"></div>
-        <div class="card__body">
-          <p class="card__place">Россия</p>
-          <h3>Административное<br>здание</h3>
-          <dl><dt>Работы</dt><dd>Ремонтные работы в помещениях</dd><dt>Период</dt><dd>май 2025</dd><dt>Площадь</dt><dd>350 м²</dd></dl>
-        </div>
-      </article>
-
-      <article class="card">
-        <div class="card__img"><img src="assets/img/bank-sochi.jpg" alt="VIP-отделение Сбербанка в Сочи" loading="lazy"></div>
-        <div class="card__body">
-          <p class="card__place">Сочи</p>
           <h3>Сбербанк,<br>вип-отделение</h3>
-          <dl><dt>Работы</dt><dd>Реконструкция здания под размещение вип-отделения</dd><dt>Период</dt><dd>2012 год</dd></dl>
+          <p class="card__sub">Реконструкция здания</p>
+          <p class="card__facts">2012</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
         </div>
       </article>
 
-      <article class="card">
-        <div class="card__img"><img src="assets/img/gates.jpg" alt="Шлюзовые кабины" loading="lazy"></div>
+      <article class="card" data-case="case-makeevka" tabindex="0" role="button" aria-label="Открыть кейс: отделение Сбербизнес в Макеевке">
+        <div class="card__img"><img src="assets/img/bank-makeevka.jpg" alt="Отделение Сбербизнес после переформатирования, Макеевка" loading="lazy"><span class="card__flag">ДНР, Макеевка</span></div>
         <div class="card__body">
-          <p class="card__place">Россия</p>
+          <h3>Отделение<br>Сбербизнес</h3>
+          <p class="card__sub">Переформатирование отделения</p>
+          <p class="card__facts">2024–2025</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
+        </div>
+      </article>
+
+      <article class="card" data-case="case-admin" tabindex="0" role="button" aria-label="Открыть кейс: административное здание">
+        <div class="card__img"><img src="assets/img/admin-office.jpg" alt="Административное здание" loading="lazy"><span class="card__flag">Россия</span></div>
+        <div class="card__body">
+          <h3>Административное<br>здание</h3>
+          <p class="card__sub">Ремонт помещений</p>
+          <p class="card__facts">350 м² · 2025</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
+        </div>
+      </article>
+
+      <article class="card" data-case="case-gates" tabindex="0" role="button" aria-label="Открыть кейс: шлюзовые кабины">
+        <div class="card__img"><img src="assets/img/gates.jpg" alt="Шлюзовые кабины" loading="lazy"><span class="card__flag">Россия</span></div>
+        <div class="card__body">
           <h3>Шлюзовые<br>кабины</h3>
-          <dl><dt>Работы</dt><dd>Поставка и установка</dd><dt>Период</dt><dd>2017 год</dd></dl>
+          <p class="card__sub">Поставка и установка</p>
+          <p class="card__facts">2017</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
         </div>
       </article>
 
-      <article class="card">
-        <div class="card__img"><img src="assets/img/bank-absolut.jpg" alt="Отделение Абсолют Банка" loading="lazy"></div>
+      <article class="card" data-case="case-absolut" tabindex="0" role="button" aria-label="Открыть кейс: Абсолют Банк">
+        <div class="card__img"><img src="assets/img/bank-absolut.jpg" alt="Отделение Абсолют Банка" loading="lazy"><span class="card__flag">Россия</span></div>
         <div class="card__body">
-          <p class="card__place">Россия</p>
           <h3>Абсолют<br>Банк</h3>
-          <dl><dt>Работы</dt><dd>Ремонтные работы в отделении</dd><dt>Период</dt><dd>2008 год</dd></dl>
+          <p class="card__sub">Ремонт отделения</p>
+          <p class="card__facts">2008</p>
+          <span class="card__more">Смотреть кейс <i>&rarr;</i></span>
         </div>
       </article>
 
@@ -299,123 +374,158 @@
   <div class="railx__bar"><i id="railBar"></i></div>
 </section>
 
-<!-- ========== НАПРАВЛЕНИЯ ========== -->
-<section class="sect focus" id="focus">
+<!-- ========== ДУБАЙ ==========
+     The Opus Tower by Omniyat — самый сильный объект в портфолио,
+     поэтому у него отдельная широкая секция, а не карточка в общем ряду -->
+<section class="dubai" id="dubai">
+  <div class="dubai__media">
+    <img src="assets/img/dubai-atrium.jpg" alt="Офис в The Opus Tower by Omniyat, Дубай" loading="lazy">
+  </div>
+  <div class="dubai__txt">
+    <p class="tag">Дубай / UAE</p>
+    <h2 class="h2">Реализуем проекты<br>в России и <span class="accent">Дубае</span></h2>
+    <p class="dubai__lead">В 2023 году мы реализовали офисное пространство в The Opus Tower by Omniyat — архитектурном комплексе, спроектированном бюро Захи Хадид.</p>
+    <p>Современный дизайн, премиальные материалы, инновационные инженерные решения. Комфорт, статус и технологии для эффективной работы.</p>
+    <dl class="dubai__facts">
+      <div><dt>Площадь</dt><dd>330 м²</dd></div>
+      <div><dt>Период</dt><dd>апрель — декабрь 2023</dd></div>
+      <div><dt>Состав работ</dt><dd>Проектирование, отделка, инженерия, комплектация</dd></div>
+    </dl>
+    <div class="dubai__act">
+      <button class="btn btn--solid" type="button" data-case="case-opus">Смотреть кейс</button>
+      <button class="btn btn--ghost" type="button" data-lead="Блок Дубай">Обсудить проект в ОАЭ</button>
+    </div>
+  </div>
+</section>
+
+<!-- ========== СПЕЦИАЛИЗАЦИЯ ==========
+     Пришло на место блока «Задачи, в которых мы сильнее всего»:
+     заказчик за секунду находит свой тип объекта -->
+<section class="sect spec" id="spec">
   <div class="sect__head">
-    <p class="tag">Направления</p>
-    <h2 class="h2">Задачи, в которых мы<br><span class="accent">сильнее всего</span></h2>
+    <p class="tag">Специализация</p>
+    <h2 class="h2">Работаем с объектами, где важны<br>качество и <span class="accent">ответственность</span></h2>
   </div>
 
-  <div class="focus__list">
-
-    <article class="fc reveal">
-      <div class="fc__txt">
-        <p class="tag">Дубай</p>
-        <h3>Офис в Дубае: стиль и технологии</h3>
-        <p>Современный дизайн, премиальные материалы, инновационные инженерные решения. Комфорт, статус и технологии для эффективной работы.</p>
-      </div>
-      <div class="fc__gal">
-        <figure class="a"><img src="assets/img/dubai-lobby.jpg" alt="Лобби офиса в Дубае" loading="lazy"></figure>
-        <figure class="b"><img src="assets/img/dubai-reception.jpg" alt="Ресепшн офиса в Дубае" loading="lazy"></figure>
-        <figure class="c"><img src="assets/img/dubai-lounge.jpg" alt="Лаунж-зона офиса в Дубае" loading="lazy"></figure>
+  <div class="spec__grid">
+    <article class="sp reveal">
+      <img src="assets/img/moscow-cabinet.jpg" alt="Кабинет руководителя, офис в Москве" loading="lazy">
+      <div class="sp__txt">
+        <h3>Офисы</h3>
+        <p>Современные рабочие пространства, штаб-квартиры и представительские офисы.</p>
       </div>
     </article>
 
-    <article class="fc fc--flip reveal">
-      <div class="fc__txt">
-        <p class="tag">Кострома</p>
-        <h3>Управление Минюста РФ по Костромской области</h3>
-        <p>Здесь мы воплотили комплексный подход от внутренних работ до благоустройства территории. Элегантные интерьеры, качественные отделочные материалы и современные инженерные системы подчёркивают статус учреждения. Продуманный ландшафтный дизайн гармонично дополняет архитектуру.</p>
-      </div>
-      <div class="fc__gal">
-        <figure class="a"><img src="assets/img/kostroma-lobby.jpg" alt="Холл административного здания" loading="lazy"></figure>
-        <figure class="b"><img src="assets/img/kostroma-hall.jpg" alt="Актовый зал" loading="lazy"></figure>
-        <figure class="c"><img src="assets/img/kostroma-cafe.jpg" alt="Зона отдыха" loading="lazy"></figure>
+    <article class="sp reveal">
+      <img src="assets/img/bank-sber-desk.jpg" alt="Ресепшн отделения Сбербанка" loading="lazy">
+      <div class="sp__txt">
+        <h3>Банки</h3>
+        <p>Отделения, вип-зоны и клиентские пространства. Участвовали в разработке вип-зон Сбербанка и ВТБ.</p>
       </div>
     </article>
 
-    <article class="fc reveal">
-      <div class="fc__txt">
-        <p class="tag">Москва</p>
-        <h3>Офис в Москве: статус и комфорт</h3>
-        <p>Продуманное пространство, сочетание благородных материалов и функциональных решений. Классика и современность объединены в элегантном интерьере, создавая рабочую атмосферу высокого уровня.</p>
-      </div>
-      <div class="fc__gal">
-        <figure class="a"><img src="assets/img/moscow-cabinet.jpg" alt="Кабинет руководителя" loading="lazy"></figure>
-        <figure class="b"><img src="assets/img/moscow-classic.jpg" alt="Переговорная в классическом стиле" loading="lazy"></figure>
-        <figure class="c"><img src="assets/img/moscow-white.jpg" alt="Светлый кабинет" loading="lazy"></figure>
+    <article class="sp reveal">
+      <img src="assets/img/kostroma-facade.jpg" alt="Административное здание в Костроме" loading="lazy">
+      <div class="sp__txt">
+        <h3>Государственные объекты</h3>
+        <p>Административные здания, реконструкция, наружные сети и благоустройство территории.</p>
       </div>
     </article>
 
-    <article class="fc fc--flip reveal">
-      <div class="fc__txt">
-        <p class="tag">Банки</p>
-        <h3>VIP-отделения банков</h3>
-        <p>Создаём интерьеры, которые подчёркивают статус и престиж, сочетая элегантный дизайн с комфортом для клиентов. Участвуем в разработке VIP-зон Сбербанка и ВТБ, где продуманы все детали, от эксклюзивного текстиля до мебели, созданной на заказ.</p>
-      </div>
-      <div class="fc__gal">
-        <figure class="a"><img src="assets/img/bank-sber-desk.jpg" alt="Ресепшн отделения Сбербанка" loading="lazy"></figure>
-        <figure class="b"><img src="assets/img/bank-sber-sign.jpg" alt="Вывеска Сбербанка в интерьере" loading="lazy"></figure>
-        <figure class="c"><img src="assets/img/bank-absolut2.jpg" alt="Клиентская зона Абсолют Банка" loading="lazy"></figure>
+    <article class="sp reveal">
+      <img src="assets/img/college-corridor.jpg" alt="Коридор Московского колледжа бизнес-технологий" loading="lazy">
+      <div class="sp__txt">
+        <h3>Общественные пространства</h3>
+        <p>Образовательные, деловые и клиентские помещения с высокой проходимостью.</p>
       </div>
     </article>
 
+    <article class="sp reveal">
+      <img src="assets/img/gates.jpg" alt="Шлюзовые кабины" loading="lazy">
+      <div class="sp__txt">
+        <h3>Защищённые зоны</h3>
+        <p>Бронированные конструкции, шлюзовые кабины, слаботочные системы и контроль доступа.</p>
+      </div>
+    </article>
+
+    <article class="sp reveal">
+      <img src="assets/img/dubai-reception.jpg" alt="Ресепшн офиса в Дубае" loading="lazy">
+      <div class="sp__txt">
+        <h3>Премиальные интерьеры</h3>
+        <p>Сложные материалы, мебель на заказ и нестандартные решения. Россия и ОАЭ.</p>
+      </div>
+    </article>
   </div>
 </section>
 
-<!-- ========== ЖИЛЫЕ ИНТЕРЬЕРЫ ========== -->
-<section class="living" id="living">
-  <div class="living__in">
-    <div class="living__txt">
-      <p class="tag">Новое направление</p>
-      <h2 class="h2">Интерьеры жилых <span class="accent">помещений</span></h2>
-      <p>Мы также занимаемся жилыми интерьерами. От ремонта до оформления всех деталей поможем создать пространство, которое будет не только красивым, но и удобным.</p>
-      <p>Подберём идеальные шторы, сделаем индивидуальный заказ мебели и учтём каждую деталь, чтобы интерьер отражал вашу личность и стиль жизни.</p>
-      <a class="btn btn--dark" href="#contacts">Обсудить проект</a>
+<!-- ========== ЖИЛОЕ НАПРАВЛЕНИЕ ==========
+     Раньше здесь был большой блок про шторы и мебель. Он спорил
+     с коммерческим позиционированием, поэтому направление переехало
+     на отдельную страницу residential.html, а здесь осталась ссылка -->
+<section class="sect resid" id="resid">
+  <a class="resid__box reveal" href="residential.html">
+    <div class="resid__txt">
+      <p class="tag">Ещё одно направление</p>
+      <h3>Интерьеры жилых помещений</h3>
+      <p>Ремонт, отделка и комплектация частных интерьеров: от чернового этапа до мебели, света и текстиля.</p>
+      <span class="resid__link">Открыть направление <i>&rarr;</i></span>
     </div>
-    <div class="living__gal">
-      <figure><img src="assets/img/home-living.jpg" alt="Гостиная" loading="lazy"></figure>
-      <figure><img src="assets/img/home-bedroom.jpg" alt="Спальня" loading="lazy"></figure>
-      <figure><img src="assets/img/home-tv.jpg" alt="Зона отдыха" loading="lazy"></figure>
-      <figure><img src="assets/img/home-hall.jpg" alt="Холл квартиры" loading="lazy"></figure>
+    <div class="resid__gal">
+      <img src="assets/img/home-living.jpg" alt="Гостиная" loading="lazy">
+      <img src="assets/img/home-bedroom.jpg" alt="Спальня" loading="lazy">
+      <img src="assets/img/home-hall.jpg" alt="Холл квартиры" loading="lazy">
     </div>
-  </div>
+  </a>
 </section>
 
-<!-- ========== ПАРТНЁРЫ ========== -->
+<!-- ========== ПАРТНЁРЫ ==========
+     Блок намеренно уменьшен: главная страница продаёт АСЭНА ГРУПП,
+     а не партнёров -->
 <section class="sect partners" id="partners">
-  <div class="sect__head">
-    <p class="tag">Партнёры</p>
-    <h2 class="h2">Работаем в связке<br>с <span class="accent">проверенными командами</span></h2>
-  </div>
-
+  <p class="tag">Партнёры и эксперты</p>
+  <p class="partners__lead">В зависимости от задачи подключаем архитекторов, проектировщиков, инженеров и дизайнеров с едиными стандартами качества.</p>
   <div class="pt">
-    <a class="pt__i reveal" href="https://helendesign.ru/" target="_blank" rel="noopener noreferrer">
-      <span class="pt__role">Дизайн интерьеров</span>
-      <h3>Елена Крылова</h3>
-      <p>Ведёт дизайн интерьеров в наших проектах. Студия дизайна элитных интерьеров класса люкс в Москве: дизайн, консалтинг, реконструкция.</p>
-      <span class="pt__link">helendesign.ru <i>&rarr;</i></span>
+    <a class="pt__i" href="https://helendesign.ru/" target="_blank" rel="noopener noreferrer">
+      <b>Елена Крылова</b><span>Дизайн интерьеров</span>
     </a>
-
-    <a class="pt__i reveal" href="https://stroygeoproekt.ru" target="_blank" rel="noopener noreferrer">
-      <span class="pt__role">BIM-проектирование</span>
-      <h3>СтройГеоПроект</h3>
-      <p>Разработка BIM-моделей и информационное моделирование на всех этапах проектирования, от анализа исходных данных до сдачи и сопровождения проекта.</p>
-      <span class="pt__link">stroygeoproekt.ru <i>&rarr;</i></span>
+    <a class="pt__i" href="https://stroygeoproekt.ru" target="_blank" rel="noopener noreferrer">
+      <b>СтройГеоПроект</b><span>BIM-проектирование</span>
     </a>
-
-    <div class="pt__i reveal">
-      <span class="pt__role">Дорожные материалы</span>
-      <h3>Битулаб</h3>
-      <p>Дорожные битумы и битумопроизводные. Официальный дистрибьютор компании «Газпромнефть-Битумные материалы».</p>
+    <div class="pt__i">
+      <b>Битулаб</b><span>Дорожные материалы</span>
     </div>
   </div>
 </section>
 
-<!-- ========== КОНТАКТЫ ========== -->
+<!-- ========== КОНТАКТЫ И ЗАЯВКА ========== -->
 <section class="sect contacts" id="contacts">
-  <p class="tag">Контакты</p>
-  <h2 class="cta">Команда специалистов «Асэна Групп»<br>готова воплотить в жизнь<br><span class="accent">все ваши самые смелые идеи</span></h2>
+  <div class="contacts__top">
+    <div class="contacts__txt">
+      <p class="tag">Контакты</p>
+      <h2 class="cta">Обсудим<br>ваш <span class="accent">проект</span></h2>
+      <p class="contacts__lead">Расскажите, какой объект вы планируете построить, реконструировать или преобразовать. Мы изучим задачу, определим оптимальный формат работы и свяжемся с вами.</p>
+      <p class="contacts__note"><span>Что полезно указать</span>Город · тип объекта · площадь · планируемые сроки · проект или техническое задание</p>
+    </div>
+
+    <!-- Короткая форма: обязательны только имя и телефон.
+         Отправка настраивается в assets/js/main.js, блок «Форма заявки» -->
+    <form class="lead" id="leadForm" novalidate>
+      <input type="hidden" name="source" value="Блок контактов">
+      <div class="lead__row">
+        <label class="fld"><span>Ваше имя <i>*</i></span><input type="text" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></label>
+        <label class="fld"><span>Телефон <i>*</i></span><input type="tel" name="phone" required autocomplete="tel" placeholder="+7 900 000 00 00"></label>
+      </div>
+      <div class="lead__row">
+        <label class="fld"><span>Тип объекта</span><input type="text" name="kind" placeholder="Офис, отделение банка, здание"></label>
+        <label class="fld"><span>Город</span><input type="text" name="city" placeholder="Москва, Дубай"></label>
+      </div>
+      <label class="fld"><span>Площадь объекта</span><input type="text" name="area" placeholder="Примерно, м²"></label>
+      <label class="fld"><span>Задача</span><textarea name="task" rows="3" placeholder="Что планируете построить или реконструировать"></textarea></label>
+      <button class="btn btn--solid lead__send" type="submit">Отправить заявку</button>
+      <p class="lead__legal">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+      <p class="lead__done" id="leadDone" role="status" hidden></p>
+    </form>
+  </div>
 
   <div class="contacts__grid">
     <a class="cnt" href="tel:+79104238255">
@@ -441,9 +551,236 @@
 <footer class="ftr">
   <img class="ftr__logo" src="assets/img/logo.png" alt="АСЭНА ГРУПП">
   <p>АСЭНА ГРУПП. Возводим вечность</p>
+  <a class="ftr__resid" href="residential.html">Жилые интерьеры</a>
   <a href="#top">Наверх ↑</a>
 </footer>
 
-<script src="assets/js/main.js?v=3"></script>
+<!-- ========== ОКНО КЕЙСА ==========
+     Одно окно на все объекты: содержимое подставляется из <template> ниже -->
+<div class="modal" id="caseModal" hidden>
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__win" role="dialog" aria-modal="true" aria-label="Кейс объекта">
+    <button class="modal__x" type="button" data-close aria-label="Закрыть">&times;</button>
+    <div class="modal__body" id="caseBody"></div>
+    <div class="modal__foot">
+      <p>Нужен подрядчик для похожего объекта?</p>
+      <button class="btn btn--solid" type="button" data-lead="Кейс объекта">Обсудить задачу</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== ОКНО ЗАЯВКИ ==========
+     Та же форма, что в контактах, но вызывается кнопками по всей странице -->
+<div class="modal modal--lead" id="leadModal" hidden>
+  <div class="modal__scrim" data-close></div>
+  <div class="modal__win modal__win--sm" role="dialog" aria-modal="true" aria-label="Обсудить проект">
+    <button class="modal__x" type="button" data-close aria-label="Закрыть">&times;</button>
+    <div class="modal__pad">
+      <p class="tag">Заявка</p>
+      <h3 class="modal__h">Обсудить проект</h3>
+      <p class="modal__sub">Оставьте контакты — остальное берём на себя. Ответим в рабочее время и уточним детали.</p>
+
+      <form class="lead" id="leadFormModal" novalidate>
+        <input type="hidden" name="source" value="Модальное окно">
+        <label class="fld"><span>Ваше имя <i>*</i></span><input type="text" name="name" required autocomplete="name" placeholder="Как к вам обращаться"></label>
+        <label class="fld"><span>Телефон <i>*</i></span><input type="tel" name="phone" required autocomplete="tel" placeholder="+7 900 000 00 00"></label>
+        <label class="fld"><span>Задача</span><textarea name="task" rows="3" placeholder="Тип объекта, город, площадь, сроки"></textarea></label>
+        <button class="btn btn--solid lead__send" type="submit">Отправить заявку</button>
+        <p class="lead__legal">Нажимая кнопку, вы соглашаетесь на обработку персональных данных.</p>
+        <p class="lead__done" id="leadDoneModal" role="status" hidden></p>
+      </form>
+
+      <div class="modal__alt">
+        <a href="tel:+79104238255">+7 910 423 82 55</a>
+        <a href="mailto:stroy.element77@gmail.com">stroy.element77@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== СОДЕРЖИМОЕ КЕЙСОВ ==========
+     Фотографии внутри <template> браузер не загружает, пока кейс не открыли,
+     поэтому большие галереи не тормозят первую загрузку страницы.
+     Чтобы добавить объект: новый <template id="case-…"> и data-case у карточки -->
+
+<template id="case-opus">
+  <p class="cs__place">Дубай, ОАЭ</p>
+  <h2 class="cs__h">The Opus Tower by Omniyat</h2>
+  <dl class="cs__facts">
+    <div><dt>Площадь</dt><dd>330 м²</dd></div>
+    <div><dt>Период</dt><dd>с апреля по декабрь 2023</dd></div>
+    <div><dt>Тип объекта</dt><dd>Офис коммерческой компании</dd></div>
+    <div><dt>Архитектура здания</dt><dd>Бюро Захи Хадид</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Офисное пространство в The Opus Tower by Omniyat — одном из самых узнаваемых зданий Дубая. Современный дизайн, премиальные материалы, инновационные инженерные решения. Комфорт, статус и технологии для эффективной работы.</p>
+    <p><b>Состав работ:</b> проектирование, отделочные работы, инженерные системы, комплектация и индивидуальные элементы интерьера.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/dubai-atrium.jpg" alt="Атриум офиса в The Opus Tower">
+    <img src="assets/img/dubai-lobby.jpg" alt="Лобби офиса в Дубае">
+    <img src="assets/img/dubai-reception.jpg" alt="Ресепшн офиса в Дубае">
+    <img class="w" src="assets/img/dubai-onyx.jpg" alt="Ресепшн из подсвеченного оникса">
+    <img src="assets/img/dubai-lounge.jpg" alt="Лаунж-зона офиса в Дубае">
+    <img src="assets/img/dubai-meeting.jpg" alt="Переговорная офиса в Дубае">
+    <img src="assets/img/dubai-round.jpg" alt="Круглая зона офиса в Дубае">
+    <img src="assets/img/dubai-window.jpg" alt="Панорамное остекление офиса в Дубае">
+    <img class="w" src="assets/img/opus-tower.jpg" alt="The Opus Tower, Дубай">
+  </div>
+</template>
+
+<template id="case-kostroma">
+  <p class="cs__place">Кострома, ул. Лесная, 11</p>
+  <h2 class="cs__h">Управление Минюста по Костромской области</h2>
+  <dl class="cs__facts">
+    <div><dt>Площадь</dt><dd>4 500 м²</dd></div>
+    <div><dt>Период</dt><dd>с апреля по сентябрь 2024</dd></div>
+    <div><dt>Тип объекта</dt><dd>Административное здание</dd></div>
+    <div><dt>Работы</dt><dd>Ремонт и реставрация, наружные инженерные сети, благоустройство</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Здесь мы воплотили комплексный подход от внутренних работ до благоустройства территории. Элегантные интерьеры, качественные отделочные материалы и современные инженерные системы подчёркивают статус учреждения. Продуманный ландшафтный дизайн гармонично дополняет архитектуру.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/kostroma-facade.jpg" alt="Фасад административного здания в Костроме">
+    <img src="assets/img/kostroma-raw.jpg" alt="Здание до начала работ">
+    <img src="assets/img/kostroma-yard.jpg" alt="Благоустройство территории">
+    <img class="w" src="assets/img/kostroma-lobby.jpg" alt="Холл административного здания">
+    <img src="assets/img/kostroma-hall.jpg" alt="Актовый зал">
+    <img src="assets/img/kostroma-meeting.jpg" alt="Переговорная">
+    <img class="w" src="assets/img/kostroma-cafe.jpg" alt="Зона отдыха">
+  </div>
+</template>
+
+<template id="case-moscow">
+  <p class="cs__place">Москва, ул. Садовническая, 12</p>
+  <h2 class="cs__h">Офисное здание</h2>
+  <dl class="cs__facts">
+    <div><dt>Площадь</dt><dd>1 700 м²</dd></div>
+    <div><dt>Период</dt><dd>с октября 2021 по июнь 2022</dd></div>
+    <div><dt>Тип объекта</dt><dd>Офисное здание</dd></div>
+    <div><dt>Работы</dt><dd>Ремонтные работы здания</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Продуманное пространство, сочетание благородных материалов и функциональных решений. Классика и современность объединены в элегантном интерьере, создавая рабочую атмосферу высокого уровня.</p>
+    <p><b>Что вошло в проект:</b> кабинеты руководства, переговорные, рабочие зоны, коридоры и зоны отдыха.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/moscow-corridor.jpg" alt="Коридор офисного здания">
+    <img src="assets/img/moscow-cabinet.jpg" alt="Кабинет руководителя">
+    <img src="assets/img/moscow-classic.jpg" alt="Переговорная в классическом стиле">
+    <img class="w" src="assets/img/moscow-lounge.jpg" alt="Зона отдыха офиса">
+    <img src="assets/img/moscow-white.jpg" alt="Светлый кабинет">
+    <img src="assets/img/moscow-living.jpg" alt="Лаунж-зона офиса">
+  </div>
+</template>
+
+<template id="case-college">
+  <p class="cs__place">Москва</p>
+  <h2 class="cs__h">Московский колледж бизнес-технологий</h2>
+  <dl class="cs__facts">
+    <div><dt>Площадь</dt><dd>4 000 м²</dd></div>
+    <div><dt>Период</dt><dd>с мая по август 2025</dd></div>
+    <div><dt>Тип объекта</dt><dd>Образовательное учреждение</dd></div>
+    <div><dt>Работы</dt><dd>Ремонтные работы в помещениях</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Ремонтные работы в помещениях колледжа: учебные аудитории, коридоры и общественные зоны. Работы выполнены с мая по август 2025 года.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/college-hall.jpg" alt="Холл колледжа">
+    <img src="assets/img/college-class.jpg" alt="Учебная аудитория">
+    <img src="assets/img/college-corridor.jpg" alt="Коридор колледжа">
+    <img class="w" src="assets/img/college-open.jpg" alt="Открытое пространство колледжа">
+  </div>
+</template>
+
+<template id="case-sochi">
+  <p class="cs__place">Сочи</p>
+  <h2 class="cs__h">Сбербанк, вип-отделение</h2>
+  <dl class="cs__facts">
+    <div><dt>Период</dt><dd>2012 год</dd></div>
+    <div><dt>Тип объекта</dt><dd>Вип-отделение банка</dd></div>
+    <div><dt>Работы</dt><dd>Реконструкция здания под размещение вип-отделения</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Создаём интерьеры, которые подчёркивают статус и престиж, сочетая элегантный дизайн с комфортом для клиентов. Участвуем в разработке вип-зон Сбербанка и ВТБ, где продуманы все детали, от эксклюзивного текстиля до мебели, созданной на заказ.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/bank-sochi.jpg" alt="Вип-отделение Сбербанка в Сочи">
+    <img src="assets/img/bank-sber-desk.jpg" alt="Ресепшн отделения Сбербанка">
+    <img src="assets/img/bank-sber-sign.jpg" alt="Вывеска Сбербанка в интерьере">
+  </div>
+</template>
+
+<template id="case-makeevka">
+  <p class="cs__place">ДНР, Макеевка, ул. 250-летия Донбасса, 5Г</p>
+  <h2 class="cs__h">Отделение Сбербизнес</h2>
+  <dl class="cs__facts">
+    <div><dt>Период</dt><dd>с декабря 2024 по январь 2025</dd></div>
+    <div><dt>Тип объекта</dt><dd>Отделение банка</dd></div>
+    <div><dt>Работы</dt><dd>Переформатирование отделения</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Переформатирование отделения под новый стандарт обслуживания: клиентская зона, рабочие места сотрудников, навигация и оформление. Работаем по всей России, включая Крым и новые регионы.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/bank-makeevka.jpg" alt="Отделение Сбербизнес после переформатирования">
+    <img class="w" src="assets/img/bank-branch.jpg" alt="Клиентская зона отделения">
+  </div>
+</template>
+
+<template id="case-admin">
+  <p class="cs__place">Россия</p>
+  <h2 class="cs__h">Административное здание</h2>
+  <dl class="cs__facts">
+    <div><dt>Площадь</dt><dd>350 м²</dd></div>
+    <div><dt>Период</dt><dd>май 2025</dd></div>
+    <div><dt>Тип объекта</dt><dd>Административное здание</dd></div>
+    <div><dt>Работы</dt><dd>Ремонтные работы в помещениях</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Ремонт помещений административного здания: отделка, инженерные системы и приведение пространства к единому стандарту.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/admin-office.jpg" alt="Административное здание, помещение после ремонта">
+    <img class="w" src="assets/img/admin-office2.jpg" alt="Административное здание, интерьер">
+  </div>
+</template>
+
+<template id="case-gates">
+  <p class="cs__place">Россия</p>
+  <h2 class="cs__h">Шлюзовые кабины</h2>
+  <dl class="cs__facts">
+    <div><dt>Период</dt><dd>2017 год</dd></div>
+    <div><dt>Тип объекта</dt><dd>Защищённые зоны</dd></div>
+    <div><dt>Работы</dt><dd>Поставка и установка</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Шлюзовые кабины для контроля доступа в защищённые зоны. Направление бронированных конструкций мы ведём целиком: изготовление, монтаж и сертификация.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/gates.jpg" alt="Шлюзовые кабины">
+  </div>
+</template>
+
+<template id="case-absolut">
+  <p class="cs__place">Россия</p>
+  <h2 class="cs__h">Абсолют Банк</h2>
+  <dl class="cs__facts">
+    <div><dt>Период</dt><dd>2008 год</dd></div>
+    <div><dt>Тип объекта</dt><dd>Отделение банка</dd></div>
+    <div><dt>Работы</dt><dd>Ремонтные работы в отделении</dd></div>
+  </dl>
+  <div class="cs__txt">
+    <p>Ремонт отделения банка: клиентская зона, рабочие места и оформление пространства в стандартах заказчика.</p>
+  </div>
+  <div class="cs__gal">
+    <img class="w" src="assets/img/bank-absolut.jpg" alt="Отделение Абсолют Банка">
+    <img class="w" src="assets/img/bank-absolut2.jpg" alt="Клиентская зона Абсолют Банка">
+  </div>
+</template>
+
+<script src="assets/js/main.js?v=4"></script>
 </body>
 </html>

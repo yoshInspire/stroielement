@@ -2,29 +2,51 @@
 (function () {
   'use strict';
 
+  /* ============================================================
+     КУДА УХОДЯТ ЗАЯВКИ
+
+     LEAD_ENDPOINT пустой — форма собирает письмо и открывает почтовую
+     программу посетителя. Это работает на статичном хостинге без сервера,
+     но часть людей письмо не отправит.
+
+     Чтобы заявки приходили сами: завести приёмник форм (Formspree,
+     Getform, собственный обработчик) и вписать его адрес в LEAD_ENDPOINT.
+     Данные уйдут туда обычным POST в формате JSON, ничего больше
+     менять не нужно.
+     ============================================================ */
+  var LEAD_ENDPOINT = '';
+  var LEAD_EMAIL = 'stroy.element77@gmail.com';
+
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* ---------- Шапка: фон при скролле ---------- */
   var hdr = document.getElementById('hdr');
-  var onScrollHdr = function () {
-    hdr.classList.toggle('is-stuck', window.scrollY > 40);
-  };
-  onScrollHdr();
-  window.addEventListener('scroll', onScrollHdr, { passive: true });
+  var hasHero = !!document.getElementById('hero');
+  if (hdr) {
+    var onScrollHdr = function () {
+      // на внутренних страницах фотографии во весь экран нет,
+      // поэтому шапка непрозрачна всегда
+      hdr.classList.toggle('is-stuck', !hasHero || window.scrollY > 40);
+    };
+    onScrollHdr();
+    window.addEventListener('scroll', onScrollHdr, { passive: true });
+  }
 
   /* ---------- Мобильное меню ---------- */
   var burger = document.getElementById('burger');
   var nav = document.getElementById('nav');
-  burger.addEventListener('click', function () {
-    var open = hdr.classList.toggle('is-open');
-    burger.setAttribute('aria-expanded', String(open));
-  });
-  nav.addEventListener('click', function (e) {
-    if (e.target.tagName === 'A') {
-      hdr.classList.remove('is-open');
-      burger.setAttribute('aria-expanded', 'false');
-    }
-  });
+  if (burger && nav) {
+    burger.addEventListener('click', function () {
+      var open = hdr.classList.toggle('is-open');
+      burger.setAttribute('aria-expanded', String(open));
+    });
+    nav.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        hdr.classList.remove('is-open');
+        burger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
   /* ---------- Появление блоков ---------- */
   var revealables = document.querySelectorAll('.reveal');
@@ -200,6 +222,7 @@
     };
     railx.addEventListener('pointerup', release);
     railx.addEventListener('pointercancel', release);
+    // после перетаскивания ленты кейс открываться не должен
     railx.addEventListener('click', function (e) {
       if (moved > 6) { e.preventDefault(); e.stopPropagation(); }
     }, true);
@@ -208,11 +231,11 @@
     railx.addEventListener('wheel', function (e) {
       if (Math.abs(e.deltaY) <= Math.abs(e.deltaX)) return;
       var max = railx.scrollWidth - railx.clientWidth;
-      var cur = railx.scrollLeft;
+      var cur2 = railx.scrollLeft;
       // на краю отдаём прокрутку странице
-      if ((e.deltaY > 0 && cur >= max - 1) || (e.deltaY < 0 && cur <= 0)) return;
+      if ((e.deltaY > 0 && cur2 >= max - 1) || (e.deltaY < 0 && cur2 <= 0)) return;
       e.preventDefault();
-      railx.scrollLeft = Math.max(0, Math.min(max, cur + e.deltaY));
+      railx.scrollLeft = Math.max(0, Math.min(max, cur2 + e.deltaY));
     }, { passive: false });
 
     var syncBar = function () {
@@ -227,4 +250,176 @@
     railx.addEventListener('scroll', syncBar, { passive: true });
     window.addEventListener('resize', syncBar);
   }
+
+  /* ============================================================
+     МОДАЛЬНЫЕ ОКНА
+     Одна механика на оба окна: кейс объекта и заявка.
+     ============================================================ */
+
+  var openModal = null;     // окно, которое сейчас открыто
+  var lastFocus = null;     // куда вернуть фокус после закрытия
+
+  var lockScroll = function (on) {
+    if (on) {
+      // компенсируем ширину полосы прокрутки, иначе страница дёрнется
+      var gap = window.innerWidth - document.documentElement.clientWidth;
+      document.body.style.paddingRight = gap > 0 ? gap + 'px' : '';
+      document.body.classList.add('is-locked');
+    } else {
+      document.body.classList.remove('is-locked');
+      document.body.style.paddingRight = '';
+    }
+  };
+
+  var openWin = function (el) {
+    if (openModal) closeWin();
+    lastFocus = document.activeElement;
+    el.hidden = false;
+    lockScroll(true);
+    openModal = el;
+    var first = el.querySelector('input, textarea, button:not(.modal__x)');
+    if (first) { try { first.focus({ preventScroll: true }); } catch (e) { first.focus(); } }
+  };
+
+  var closeWin = function () {
+    if (!openModal) return;
+    openModal.hidden = true;
+    // окно кейса переиспользуется, поэтому чистим содержимое и снимаем
+    // с браузера загрузку фотографий закрытого объекта
+    var body = openModal.querySelector('#caseBody');
+    if (body) body.innerHTML = '';
+    openModal.scrollTop = 0;
+    openModal = null;
+    lockScroll(false);
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus({ preventScroll: true }); } catch (e) { /* элемент исчез */ } }
+  };
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && openModal) closeWin();
+  });
+  document.addEventListener('click', function (e) {
+    if (e.target.closest('[data-close]')) closeWin();
+  });
+
+  /* ---------- Окно кейса ---------- */
+  var caseModal = document.getElementById('caseModal');
+  var caseBody = document.getElementById('caseBody');
+
+  var openCase = function (id) {
+    var tpl = document.getElementById(id);
+    if (!tpl || !caseModal || !caseBody) return;
+    caseBody.innerHTML = '';
+    caseBody.appendChild(tpl.content.cloneNode(true));
+    openWin(caseModal);
+    caseModal.scrollTop = 0;
+  };
+
+  document.addEventListener('click', function (e) {
+    var host = e.target.closest('[data-case]');
+    if (!host) return;
+    e.preventDefault();
+    openCase(host.dataset.case);
+  });
+  // карточка в портфолио открывается и с клавиатуры
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    var host = e.target.closest && e.target.closest('.card[data-case]');
+    if (!host) return;
+    e.preventDefault();
+    openCase(host.dataset.case);
+  });
+
+  /* ---------- Окно заявки ---------- */
+  var leadModal = document.getElementById('leadModal');
+  document.addEventListener('click', function (e) {
+    var host = e.target.closest('[data-lead]');
+    if (!host || !leadModal) return;
+    e.preventDefault();
+    var src = leadModal.querySelector('input[name="source"]');
+    if (src) src.value = host.dataset.lead || 'Сайт';   // видно, с какой кнопки пришла заявка
+    openWin(leadModal);
+  });
+
+  /* ============================================================
+     ФОРМА ЗАЯВКИ
+     Обязательны только имя и телефон: длинная анкета отпугивает.
+     ============================================================ */
+
+  var LABELS = {
+    name: 'Имя', phone: 'Телефон', kind: 'Тип объекта', city: 'Город',
+    area: 'Площадь', task: 'Задача', source: 'Откуда заявка'
+  };
+
+  var collect = function (form) {
+    var out = [];
+    [].forEach.call(form.elements, function (el) {
+      if (!el.name || !el.value.trim()) return;
+      out.push({ key: el.name, label: LABELS[el.name] || el.name, value: el.value.trim() });
+    });
+    return out;
+  };
+
+  var validate = function (form) {
+    var ok = true;
+    [].forEach.call(form.querySelectorAll('[required]'), function (el) {
+      var bad = !el.value.trim();
+      el.closest('.fld').classList.toggle('is-bad', bad);
+      if (bad && ok) { el.focus(); ok = false; }
+    });
+    return ok;
+  };
+
+  var say = function (form, text) {
+    var box = form.querySelector('.lead__done');
+    if (!box) return;
+    box.textContent = text;
+    box.hidden = false;
+  };
+
+  var send = function (form) {
+    var data = collect(form);
+    var btn = form.querySelector('.lead__send');
+
+    if (LEAD_ENDPOINT) {
+      // настроен приёмник заявок: отправляем данные в фоне
+      var payload = {};
+      data.forEach(function (f) { payload[f.key] = f.value; });
+      btn.disabled = true;
+      fetch(LEAD_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+        body: JSON.stringify(payload)
+      }).then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        form.reset();
+        say(form, 'Заявка отправлена. Мы свяжемся с вами в рабочее время.');
+      }).catch(function () {
+        say(form, 'Не удалось отправить заявку. Позвоните нам: +7 910 423 82 55');
+      }).then(function () {
+        btn.disabled = false;
+      });
+      return;
+    }
+
+    // приёмник не настроен: собираем письмо и отдаём почтовой программе
+    var subject = 'Заявка с сайта АСЭНА ГРУПП';
+    var body = data.map(function (f) { return f.label + ': ' + f.value; }).join('\n');
+    window.location.href = 'mailto:' + LEAD_EMAIL +
+      '?subject=' + encodeURIComponent(subject) +
+      '&body=' + encodeURIComponent(body);
+    say(form, 'Мы открыли письмо в вашей почте — осталось нажать «Отправить». Если письмо не открылось, позвоните: +7 910 423 82 55');
+  };
+
+  [].forEach.call(document.querySelectorAll('form.lead'), function (form) {
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!validate(form)) return;
+      send(form);
+    });
+    // подсветка ошибки снимается, как только человек начал вводить
+    form.addEventListener('input', function (e) {
+      var fld = e.target.closest('.fld');
+      if (fld) fld.classList.remove('is-bad');
+    });
+  });
 })();
