@@ -433,7 +433,7 @@ button{ font:inherit; color:inherit; }
   display:flex; flex-direction:column;
   align-items:center; justify-content:center;
   gap:11px; text-align:center;
-  min-height:clamp(82px,7vw,104px);
+  min-height:clamp(96px,8vw,122px);
   padding:18px 14px;
   background:var(--ink-2);
   border:1px solid var(--line-soft);
@@ -441,8 +441,21 @@ button{ font:inherit; color:inherit; }
   transition:border-color .3s var(--ease), background .3s var(--ease);
 }
 .trust__i:hover{ border-color:rgba(210,179,117,.42); background:var(--ink-3); }
-/* появится, когда в <li> добавят настоящий логотип */
-.trust__i img{ max-height:clamp(26px,2.4vw,36px); width:auto; opacity:.92; }
+/* Логотипы разных брендов приведены к одному белому: на тёмном фоне
+   зелёный Сбер рядом с синим ВТБ и красным МТС дают пестроту, а белый
+   монохром совпадает с цветом названий в соседних плитках. */
+.trust__i img{
+  /* единый бокс: логотипы очень разной пропорции — от почти квадратного
+     пегаса Внуково до вордмарка Абсолюта 10:1. object-fit вписывает
+     каждый в одинаковую рамку, поэтому оптически они одного веса */
+  max-height:clamp(34px,3.3vw,46px);   /* по высоте живут квадратные знаки */
+  max-width:84%;                       /* по ширине — широкие вордмарки */
+  width:auto; height:auto; object-fit:contain;
+  filter:brightness(0) invert(1);
+  opacity:.85;
+  transition:opacity .3s var(--ease);
+}
+.trust__i:hover img{ opacity:1; }
 .trust__i span{
   font-size:clamp(14.5px,1.15vw,18px);
   font-weight:500; letter-spacing:-.01em; line-height:1.25;
