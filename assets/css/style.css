@@ -422,16 +422,30 @@ button{ font:inherit; color:inherit; }
 .trust .tag{ margin:0; font-size:clamp(13px,1.4vw,19px); letter-spacing:.06em; }
 .trust__lead{ margin:0; color:var(--txt-dim); max-width:62ch; }
 
+/* Плитки заказчиков. Раньше это была таблица с рамками — на телефоне
+   пустая ячейка в конце ряда читалась как оборванная решётка. */
 .trust__list{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
-  border-top:1px solid var(--line);
+  grid-template-columns:repeat(5,1fr);   /* 9 заказчиков ложатся как 5 + 4 */
+  gap:clamp(8px,.9vw,14px);
 }
-.trust__list li{
-  font-size:clamp(16px,1.35vw,21px);
-  font-weight:500; letter-spacing:-.02em;
-  padding:clamp(14px,1.4vw,20px) 14px clamp(14px,1.4vw,20px) 0;
-  border-bottom:1px solid var(--line-soft);
+.trust__i{
+  display:flex; flex-direction:column;
+  align-items:center; justify-content:center;
+  gap:11px; text-align:center;
+  min-height:clamp(82px,7vw,104px);
+  padding:18px 14px;
+  background:var(--ink-2);
+  border:1px solid var(--line-soft);
+  border-radius:10px;
+  transition:border-color .3s var(--ease), background .3s var(--ease);
+}
+.trust__i:hover{ border-color:rgba(210,179,117,.42); background:var(--ink-3); }
+/* появится, когда в <li> добавят настоящий логотип */
+.trust__i img{ max-height:clamp(26px,2.4vw,36px); width:auto; opacity:.92; }
+.trust__i span{
+  font-size:clamp(14.5px,1.15vw,18px);
+  font-weight:500; letter-spacing:-.01em; line-height:1.25;
   color:var(--txt);
 }
 
@@ -972,6 +986,29 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
 .reveal:nth-child(4){ transition-delay:.15s; }
 
 /* ============================================================
+   ПОДВАЛ
+   ============================================================ */
+
+.ftr{
+  position:relative; z-index:1;
+  max-width:1520px; margin:0 auto;
+  padding:24px var(--pad) 38px;
+  font-size:13px; color:var(--txt-dim-2);
+}
+.ftr__top{ display:flex; align-items:center; gap:20px; flex-wrap:wrap; }
+.ftr__legal{
+  margin:20px 0 0; padding-top:18px;
+  border-top:1px solid var(--line-soft);
+  font-size:12.5px; line-height:1.55; max-width:104ch;
+}
+.ftr__logo{ height:20px; width:auto; opacity:.8; }
+.ftr p{ margin:0; }
+.ftr a{ display:inline-block; padding:12px 0; transition:color .25s var(--ease); }
+.ftr a:hover{ color:var(--gold); }
+.ftr__resid{ margin-left:auto; }
+.ftr__resid + a{ margin-left:0; }
+
+/* ============================================================
    АДАПТИВ
    ============================================================ */
 
@@ -994,6 +1031,7 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
   }
   .hero__cap{ max-width:none; }
   .trust__head{ grid-template-columns:1fr; gap:12px; }
+  .trust__list{ grid-template-columns:repeat(3,1fr); }
   .about__body{ grid-template-columns:1fr; }
   .about__txt{ display:block; }
   .about__pins{ margin:28px 0 0; padding-top:0; }
@@ -1039,7 +1077,9 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
   .hdr__cta i{ display:none; }
   .burger{ display:block; z-index:2; }
   .srv__peek{ display:none; }
-  .blueprint{ grid-template-columns:repeat(2,1fr); }
+  /* на узком экране линии подложки ложатся прямо на текст
+     и выглядят как случайная решётка — гасим */
+  .blueprint{ display:none; }
 
   .flow__list{ grid-template-columns:repeat(2,1fr); }
   .flow__i{ padding-left:0 !important; padding-right:clamp(14px,3vw,26px); }
@@ -1080,7 +1120,7 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
   .hero__meta b{ font-size:17px; white-space:nowrap; }
   .hero__meta span{ font-size:10.5px; line-height:1.3; color:var(--txt-dim-2); }
   .hero__geo{ font-size:11.5px; }
-  .trust__list{ grid-template-columns:1fr 1fr; }
+  .trust__list{ grid-template-columns:repeat(2,1fr); }
   .why__grid{ grid-template-columns:1fr; }
   .flow__list{ grid-template-columns:1fr; }
   .flow__i{ border-right:none; padding-right:0; }
@@ -1092,7 +1132,7 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
   .lead__send{ align-self:stretch; }
   .modal__foot{ flex-direction:column; align-items:stretch; }
   .modal__foot .btn{ width:100%; }
-  .ftr a{ margin-left:0; }
+  .ftr__resid{ margin-left:0; }
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1107,21 +1147,3 @@ a.cnt:hover .cnt__v{ color:var(--gold); }
   .modal__scrim, .modal__win{ animation:none; }
   *{ transition-duration:.01ms !important; }
 }
-
-/* ============================================================
-   ПОДВАЛ
-   ============================================================ */
-
-.ftr{
-  position:relative; z-index:1;
-  max-width:1520px; margin:0 auto;
-  padding:24px var(--pad) 38px;
-  display:flex; align-items:center; gap:20px; flex-wrap:wrap;
-  font-size:13px; color:var(--txt-dim-2);
-}
-.ftr__logo{ height:20px; width:auto; opacity:.8; }
-.ftr p{ margin:0; }
-.ftr a{ display:inline-block; padding:12px 0; transition:color .25s var(--ease); }
-.ftr a:hover{ color:var(--gold); }
-.ftr__resid{ margin-left:auto; }
-.ftr__resid + a{ margin-left:0; }
