@@ -36,10 +36,34 @@ certbot certonly --webroot -w /var/www/letsencrypt \
   --non-interactive --keep-until-expiring
 
 echo "==> 3/5 конфигурация nginx с HTTPS"
+
+# Эти два файла certbot создаёт только через плагин --nginx; мы ходим
+# через --webroot, поэтому кладём их сами. options-ssl-nginx.conf есть
+# в пакете python3-certbot-nginx — из сети ничего не тянем, иначе
+# скрипт зависит от доступности чужого репозитория.
+PKG=/usr/lib/python3/dist-packages/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf
+if [ ! -f /etc/letsencrypt/options-ssl-nginx.conf ]; then
+  if [ -f "$PKG" ]; then
+    cp "$PKG" /etc/letsencrypt/options-ssl-nginx.conf
+  else
+    cat > /etc/letsencrypt/options-ssl-nginx.conf <<'TLSEOF'
+ssl_session_cache shared:le_nginx_SSL:10m;
+ssl_session_timeout 1440m;
+ssl_session_tickets off;
+ssl_protocols TLSv1.2 TLSv1.3;
+ssl_prefer_server_ciphers off;
+ssl_ciphers "ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-CHACHA20-POLY1305";
+TLSEOF
+  fi
+fi
+[ -f /etc/letsencrypt/ssl-dhparams.pem ] || openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
+
 # страховка: если новый конфиг не пройдёт проверку, возвращаем рабочий,
 # иначе на диске останется битый файл и следующий deploy.sh тоже упадёт
 BAK=/etc/nginx/sites-available/asenagroup.ru.conf.before-ssl
-cp -a /etc/nginx/sites-available/asenagroup.ru.conf "$BAK"
+# только если копии ещё нет: при повторном запуске текущий конфиг уже
+# содержит 443-й блок, и перезапись затёрла бы настоящий HTTP-оригинал
+[ -f "$BAK" ] || cp -a /etc/nginx/sites-available/asenagroup.ru.conf "$BAK"
 cat > /etc/nginx/snippets/asena-site.conf <<'EOF'
     root /var/www/asenagroup.ru;
     index index.html;
@@ -131,12 +155,6 @@ server {
 }
 EOF
 
-[ -f /etc/letsencrypt/options-ssl-nginx.conf ] || \
-  curl -fsSL https://raw.githubusercontent.com/certbot/certbot/master/certbot-nginx/certbot_nginx/_internal/tls_configs/options-ssl-nginx.conf \
-    -o /etc/letsencrypt/options-ssl-nginx.conf
-[ -f /etc/letsencrypt/ssl-dhparams.pem ] || \
-  openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
-
 if nginx -t; then
   systemctl reload nginx
   echo "    конфиг применён, копия прежнего: $BAK"
@@ -151,10 +169,11 @@ fi
 
 echo "==> 4/5 открываем сайт для поисковых систем"
 cat > "$ROOT/robots.txt" <<EOF
+# Боевой домен. Сайт открыт для индексации.
 User-agent: *
 Allow: /
 
-Sitemap: https://$DOMAIN/sitemap.xml
+Host: https://$DOMAIN
 EOF
 chown deploy:www-data "$ROOT/robots.txt"; chmod 644 "$ROOT/robots.txt"
 # и в исходнике деплоя, чтобы следующий deploy.sh не вернул preview-версию
