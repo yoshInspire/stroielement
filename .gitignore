@@ -10,3 +10,6 @@ dist/
 # Служебное
 Thumbs.db
 .DS_Store
+
+# Доступы к серверу: пароль root, пути к ключам. Не в репозиторий.
+SERVER-SECRETS.local.md

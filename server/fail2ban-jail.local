@@ -1,0 +1,33 @@
+[DEFAULT]
+bantime  = 1h
+findtime = 10m
+maxretry = 5
+ignoreip = 127.0.0.1/8 ::1
+
+[sshd]
+enabled  = true
+backend  = systemd
+port     = 22
+maxretry = 3
+bantime  = 24h
+
+# nginx jails read the vhost log files, so they need the polling backend
+[nginx-botsearch]
+enabled  = true
+backend  = polling
+port     = http,https
+logpath  = /var/log/nginx/asenagroup.access.log
+maxretry = 5
+
+[nginx-bad-request]
+enabled  = true
+backend  = polling
+port     = http,https
+logpath  = /var/log/nginx/asenagroup.access.log
+maxretry = 10
+
+[nginx-http-auth]
+enabled  = true
+backend  = polling
+port     = http,https
+logpath  = /var/log/nginx/asenagroup.error.log
