@@ -1,4 +1,4 @@
-/* АСЭНА ГРУПП — интерактив лендинга */
+/* АСЕНА ГРУПП — интерактив лендинга */
 (function () {
   'use strict';
 
@@ -350,6 +350,98 @@
     area: 'Площадь', task: 'Задача', source: 'Откуда заявка'
   };
 
+  /* ---------- Маски полей ----------
+     Телефон приводится к виду +7 900 000 00 00 прямо во время ввода,
+     площадь — к числу с разрядами. Курсор не прыгает: считаем, сколько
+     цифр стояло левее него, и после переформатирования возвращаем
+     каретку после того же количества цифр. */
+
+  var digits = function (s) { return String(s).replace(/\D/g, ''); };
+
+  // 8 900…, 7 900…, 900… — всё приводится к 7900…
+  var phoneDigits = function (raw) {
+    var d = digits(raw);
+    if (!d) return '';
+    d = (d.charAt(0) === '8' || d.charAt(0) === '7') ? '7' + d.slice(1) : '7' + d;
+    return d.slice(0, 11);
+  };
+
+  var phoneFormat = function (d) {
+    if (!d) return '';
+    var out = '+7';
+    if (d.length > 1) out += ' ' + d.slice(1, 4);
+    if (d.length > 4) out += ' ' + d.slice(4, 7);
+    if (d.length > 7) out += ' ' + d.slice(7, 9);
+    if (d.length > 9) out += ' ' + d.slice(9, 11);
+    return out;
+  };
+
+  // позиция каретки сразу после n-й цифры строки
+  var caretAfterDigits = function (str, n) {
+    if (n <= 0) return str.charAt(0) === '+' ? 1 : 0;
+    var seen = 0;
+    for (var i = 0; i < str.length; i++) {
+      if (/\d/.test(str.charAt(i)) && ++seen === n) return i + 1;
+    }
+    return str.length;
+  };
+
+  var setCaret = function (el, pos) {
+    try { el.setSelectionRange(pos, pos); } catch (e) { /* input может не поддерживать */ }
+  };
+
+  var maskPhone = function (el) {
+    var pos = el.selectionStart == null ? el.value.length : el.selectionStart;
+    var before = digits(el.value.slice(0, pos)).length;
+    var raw = digits(el.value).length;
+    var d = phoneDigits(el.value);
+    var val = phoneFormat(d);
+    // если код 7 подставился сам, каретка должна уехать на цифру вперёд
+    var shift = d.length - Math.min(raw, 11);
+    el.value = val;
+    setCaret(el, caretAfterDigits(val, before + (shift > 0 ? shift : 0)));
+  };
+
+  var maskArea = function (el) {
+    var pos = el.selectionStart == null ? el.value.length : el.selectionStart;
+    var before = digits(el.value.slice(0, pos)).length;
+    var val = digits(el.value).slice(0, 7).replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    el.value = val;
+    setCaret(el, caretAfterDigits(val, before));
+  };
+
+  // Backspace на разделителе должен стирать цифру слева, а не пробел
+  var eatSeparator = function (e) {
+    var el = e.target;
+    if (e.key !== 'Backspace' || el.selectionStart !== el.selectionEnd) return;
+    var pos = el.selectionStart;
+    if (pos === 0 || /\d/.test(el.value.charAt(pos - 1))) return;
+    e.preventDefault();
+    var p = pos - 1;
+    while (p > 0 && !/\d/.test(el.value.charAt(p - 1))) p--;
+    if (p === 0) return;
+    el.value = el.value.slice(0, p - 1) + el.value.slice(p);
+    setCaret(el, p - 1);
+    (el.name === 'area' ? maskArea : maskPhone)(el);
+  };
+
+  [].forEach.call(document.querySelectorAll('form.lead input[name="phone"]'), function (el) {
+    // в пустом поле сразу показываем код страны — так понятнее, что ждём
+    el.addEventListener('focus', function () {
+      if (!el.value) { el.value = '+7 '; setCaret(el, el.value.length); }
+    });
+    el.addEventListener('blur', function () {
+      if (digits(el.value).length <= 1) el.value = '';
+    });
+    el.addEventListener('keydown', eatSeparator);
+    el.addEventListener('input', function () { maskPhone(el); });
+  });
+
+  [].forEach.call(document.querySelectorAll('form.lead input[name="area"]'), function (el) {
+    el.addEventListener('keydown', eatSeparator);
+    el.addEventListener('input', function () { maskArea(el); });
+  });
+
   var collect = function (form) {
     var out = [];
     [].forEach.call(form.elements, function (el) {
@@ -359,14 +451,35 @@
     return out;
   };
 
+  // подпись под полем: пустая строка убирает и подсветку, и текст
+  var fldErr = function (el, msg) {
+    var fld = el.closest && el.closest('.fld');
+    if (!fld) return;
+    fld.classList.toggle('is-bad', !!msg);
+    var box = fld.querySelector('.fld__err');
+    if (!msg) { if (box) fld.removeChild(box); return; }
+    if (!box) {
+      box = document.createElement('span');
+      box.className = 'fld__err';
+      fld.appendChild(box);
+    }
+    box.textContent = msg;
+  };
+
   var validate = function (form) {
-    var ok = true;
-    [].forEach.call(form.querySelectorAll('[required]'), function (el) {
-      var bad = !el.value.trim();
-      el.closest('.fld').classList.toggle('is-bad', bad);
-      if (bad && ok) { el.focus(); ok = false; }
+    var first = null;
+    [].forEach.call(form.elements, function (el) {
+      if (!el.name || el.type === 'hidden') return;
+      var msg = '';
+      if (el.required && !el.value.trim()) msg = 'Заполните поле';
+      else if (el.name === 'phone' && el.value.trim() && digits(el.value).length !== 11) {
+        msg = 'Введите номер полностью: код и 10 цифр';
+      }
+      fldErr(el, msg);
+      if (msg && !first) first = el;
     });
-    return ok;
+    if (first) first.focus();
+    return !first;
   };
 
   var say = function (form, text) {
@@ -402,7 +515,7 @@
     }
 
     // приёмник не настроен: собираем письмо и отдаём почтовой программе
-    var subject = 'Заявка с сайта АСЭНА ГРУПП';
+    var subject = 'Заявка с сайта АСЕНА ГРУПП';
     var body = data.map(function (f) { return f.label + ': ' + f.value; }).join('\n');
     window.location.href = 'mailto:' + LEAD_EMAIL +
       '?subject=' + encodeURIComponent(subject) +
@@ -416,10 +529,9 @@
       if (!validate(form)) return;
       send(form);
     });
-    // подсветка ошибки снимается, как только человек начал вводить
+    // подсветка и подпись об ошибке снимаются, как только человек начал вводить
     form.addEventListener('input', function (e) {
-      var fld = e.target.closest('.fld');
-      if (fld) fld.classList.remove('is-bad');
+      fldErr(e.target, '');
     });
   });
 })();
