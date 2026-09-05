@@ -36,6 +36,10 @@ certbot certonly --webroot -w /var/www/letsencrypt \
   --non-interactive --keep-until-expiring
 
 echo "==> 3/5 конфигурация nginx с HTTPS"
+# страховка: если новый конфиг не пройдёт проверку, возвращаем рабочий,
+# иначе на диске останется битый файл и следующий deploy.sh тоже упадёт
+BAK=/etc/nginx/sites-available/asenagroup.ru.conf.before-ssl
+cp -a /etc/nginx/sites-available/asenagroup.ru.conf "$BAK"
 cat > /etc/nginx/snippets/asena-site.conf <<'EOF'
     root /var/www/asenagroup.ru;
     index index.html;
@@ -95,9 +99,8 @@ server {
 
 # 443: www -> апекс
 server {
-    listen 443 ssl;
-    listen [::]:443 ssl;
-    http2 on;
+    listen 443 ssl http2;
+    listen [::]:443 ssl http2;
     server_name www.asenagroup.ru;
 
     ssl_certificate     /etc/letsencrypt/live/asenagroup.ru/fullchain.pem;
@@ -110,9 +113,8 @@ server {
 
 # 443: основной сайт
 server {
-    listen 443 ssl default_server;
-    listen [::]:443 ssl default_server;
-    http2 on;
+    listen 443 ssl http2 default_server;
+    listen [::]:443 ssl http2 default_server;
     server_name asenagroup.ru;
 
     ssl_certificate     /etc/letsencrypt/live/asenagroup.ru/fullchain.pem;
@@ -135,8 +137,17 @@ EOF
 [ -f /etc/letsencrypt/ssl-dhparams.pem ] || \
   openssl dhparam -out /etc/letsencrypt/ssl-dhparams.pem 2048
 
-nginx -t
-systemctl reload nginx
+if nginx -t; then
+  systemctl reload nginx
+  echo "    конфиг применён, копия прежнего: $BAK"
+else
+  echo "ОШИБКА: новый конфиг не прошёл проверку, откатываю на прежний"
+  cp -a "$BAK" /etc/nginx/sites-available/asenagroup.ru.conf
+  rm -f /etc/nginx/snippets/asena-site.conf
+  nginx -t && systemctl reload nginx
+  echo "Сайт остался на HTTP. Сертификат выпущен и лежит в /etc/letsencrypt."
+  exit 1
+fi
 
 echo "==> 4/5 открываем сайт для поисковых систем"
 cat > "$ROOT/robots.txt" <<EOF

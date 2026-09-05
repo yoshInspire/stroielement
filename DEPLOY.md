@@ -143,6 +143,12 @@ ssh asena 'echo "ssh-ed25519 AAAA... comment" >> ~/.ssh/authorized_keys'
 
 Политика по умолчанию: входящие — `deny`, исходящие — `allow`. IPv4 и IPv6.
 
+> `limit` на 22-м порту роняет подключения, если с одного адреса приходит
+> больше шести за 30 секунд. Скрипты, открывающие много SSH-сессий подряд
+> (например, несколько `scp` в цикле), словят `Connection timed out` —
+> это не сбой сервера, достаточно подождать полминуты. Гоняйте пачку
+> команд одной сессией, а не десятью.
+
 ### fail2ban
 
 Активные джейлы: `sshd`, `nginx-botsearch`, `nginx-bad-request`, `nginx-http-auth`.
@@ -271,7 +277,12 @@ Let's Encrypt получить сейчас физически нельзя — 
    ssh asena 'getent ahostsv4 asenagroup.ru www.asenagroup.ru'
    ```
 
-4. Запустить на сервере готовый скрипт — он всё доделает сам:
+4. **Ничего не запускать — сервер сделает это сам.** На нём работает
+   systemd-таймер `asena-cert-watch.timer`: каждые 10 минут он проверяет,
+   резолвится ли домен в `193.187.94.135`, и при первой же удаче запускает
+   go-live. Подробности — в разделе «Автовыпуск сертификата» ниже.
+
+   Запустить руками, не дожидаясь таймера, тоже можно:
 
    ```bash
    ssh asena 'sudo /usr/local/bin/asena-golive.sh'
@@ -298,6 +309,44 @@ Let's Encrypt получить сейчас физически нельзя — 
 ```bash
 ssh asena 'sudo LE_EMAIL=you@example.com /usr/local/bin/asena-golive.sh'
 ```
+
+### Автовыпуск сертификата
+
+Ждать вручную не нужно. На сервере крутится systemd-таймер
+`asena-cert-watch.timer` → `/usr/local/bin/asena-cert-watch.sh`.
+Раз в 10 минут скрипт:
+
+1. спрашивает у `8.8.8.8` A-записи `asenagroup.ru` и `www.asenagroup.ru`;
+2. пока они не равны `193.187.94.135` — пишет строку в лог и выходит;
+3. как только домен зарезолвился — сбрасывает кэш `systemd-resolved`
+   (иначе локально ещё висит NXDOMAIN) и запускает `asena-golive.sh`;
+4. при успехе ставит отметку `/var/lib/asena/golive.done` и **выключает
+   таймер сам** — повторно ничего не переписывается;
+5. если go-live падает, считает неудачи и после пятой останавливается,
+   чтобы не упереться в лимит Let's Encrypt (5 неудачных проверок в час).
+
+Взято именно systemd, а не cron: пакета `cron` на этом образе Ubuntu нет,
+а таймеры работают из коробки.
+
+Смотреть, что происходит:
+
+```bash
+ssh asena 'sudo tail -20 /var/log/asena-golive.log; systemctl list-timers asena-cert-watch.timer --no-pager'
+```
+
+Перезапустить после разбора ошибок:
+
+```bash
+ssh asena 'sudo rm -f /var/lib/asena/fails && sudo systemctl enable --now asena-cert-watch.timer'
+```
+
+Шаблон nginx из go-live прогнан через `nginx -t` в песочнице с
+самоподписанным сертификатом — конфиг валиден. Там же поймана
+директива `http2 on;`: она появилась в nginx 1.25.1, а на сервере 1.24,
+поэтому в шаблоне используется форма `listen 443 ssl http2;`.
+Дополнительно go-live сохраняет прежний конфиг в
+`asenagroup.ru.conf.before-ssl` и откатывается на него, если новый
+не пройдёт проверку, — тогда сайт просто остаётся на HTTP.
 
 ### robots.txt — важно
 
@@ -327,6 +376,9 @@ Sitemap сейчас не генерируется — либо создайте
 | Файл в репозитории | Путь на сервере |
 |---|---|
 | `server/asena-golive.sh` | `/usr/local/bin/asena-golive.sh` |
+| `server/asena-cert-watch.sh` | `/usr/local/bin/asena-cert-watch.sh` |
+| `server/asena-cert-watch.service` | `/etc/systemd/system/asena-cert-watch.service` |
+| `server/asena-cert-watch.timer` | `/etc/systemd/system/asena-cert-watch.timer` |
 | `server/nginx-asenagroup.ru.conf` | `/etc/nginx/sites-available/asenagroup.ru.conf` |
 | `server/sshd-00-asena-hardening.conf` | `/etc/ssh/sshd_config.d/00-asena-hardening.conf` |
 | `server/fail2ban-jail.local` | `/etc/fail2ban/jail.local` |
@@ -361,8 +413,11 @@ sshd -t && systemctl restart ssh
 ## 10. Что осталось на вашей стороне
 
 1. **Сохранить приватный ключ** `C:\Users\oblik\.ssh\asenagroup_ed25519` в резервное место.
-2. **Зарегистрировать `asenagroup.ru`** и прописать A-записи (раздел 7).
-3. После делегирования — **запустить `asena-golive.sh`** и поправить `robots.txt` в репозитории.
+2. Домен зарегистрирован 5 сентября 2026, A-записи на `ns1/ns2.reg.ru`
+   стоят верные. Осталось дождаться, пока делегирование появится в зоне
+   `.ru` — сертификат выпустится сам, вмешательство не нужно.
+3. После автовыпуска — **поправить `robots.txt` в репозитории**,
+   иначе следующий `deploy.sh` вернёт preview-версию с `Disallow: /`.
 4. При желании — **настроить приёмник заявок**: вписать URL в `LEAD_ENDPOINT`
    в `assets/js/main.js`, иначе форма продолжит открывать почтовый клиент.
 5. Проверить содержимое `SERVER-SECRETS.local.md` и перенести пароль в менеджер паролей.
